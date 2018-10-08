@@ -8,9 +8,10 @@
     font-weight: 300;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    color: #E0E0E0;
 }
 body {
-    background-color: #E4E4E4;
+    background-color: #424242;
 }
 a {
     text-decoration: none;
@@ -24,11 +25,99 @@ img {
 /* CABEÇALHO */
 .cabecalho {
     width: 100%;
+    height: 100%;
     float: left;
-    padding: 4% 4%;
+    padding: 0.5% 2%;
+    background-color: #3B3B3B;
 }
 .logo {
-    width: 256px;
-    height: 56px;
+    width: 110px;
+    height: 51px;
     float: left;
+}
+/* Menu */
+.menu {
+    width: 100%;
+    height: 100%;
+    float: left;
+    background-color: #424242;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+}
+.btn {
+    width: 56px;
+    height: 56px;
+    background-color: #424242;
+    cursor: pointer;
+    
+}
+.btn:hover {
+    color: #fff;
+}
+/* SIDEBAR */
+.sb {
+    width: 200px;
+    height: 100%;
+    background-color: #424242;
+    z-index: 9;
+    overflow: auto;
+    display: none;          /* trocar para flex p/ aparecer */
+    flex-direction: column;
+    justify-content: flex-start;
+    float: left;
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.2), -5px 0 20px rgba(0, 0, 0, 0.2); 
+}
+.right {
+    /* display: flex; */
+    float: right;
+}
+.sb p {
+    color:#fff;
+    font-size: 22pt;
+    padding: 3% 0 5% 10%;
+    font-weight: 400;
+}
+.pesquisa {
+    margin: 0 3% 5% 3%;
+    padding: 5%;
+    border: 1px solid #707070;
+    border-radius: 30px;
+
+}
+.sb-item {
+    width: 100%;
+    background-color: #212121;
+    padding: 6% 0 6% 10%;
+    font-size: 14pt;
+    font-weight: 350;
+}
+.sb-bottom {
+    height: 200px;
+}
+.animate-left {
+    animation: animateleft 0.4s;
+}
+.animate-right {
+    animation: animateright 0.4s;
+}
+@keyframes animateleft {
+    0% {
+        left: -300px;
+        opacity: 0;
+    }
+    100% {
+        left: 0;
+        opacity: 1;
+    }
+}
+@keyframes animateright {
+    0% {
+        right: -300px;
+        opacity: 0;
+    }
+    100% {
+        right: 0;
+        opacity: 1;
+    }
 }

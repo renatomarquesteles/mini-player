@@ -1,18 +1,46 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- a largura da página vai ser igual a largura do dispositivo -->
     <title>SMN Music Player</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">    <!-- a largura da página vai ser igual a largura do dispositivo -->
     <link rel="stylesheet" href="css/style.css" />
-    <script src="main.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="icon" href="img/icon.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header class="cabecalho">
-        <a href="index.html"><img class="logo" src = "img/logo.png"></a>
+        <a href="index.html"><img class="logo" src="img/logo.png"></a>
     </header>
+    <div class="menu">
+        <button class="btn"> <i class="fas fa-play fa-lg"></i> </button>
+        <button class="btn"> <i class="fas fa-bars fa-lg"></i> </button>
+    </div>
+    <div class="sb animate-left" id="sb-musicas">
+        <p>Músicas</p>
+        <div class="pesquisa"><i class="fas fa-search fa-lg"></i></div>
+        <a class="sb-item" href="#">Faixa-1.mp3</a>
+        <a class="sb-item" href="#">Faixa-2.mp3</a>
+        <a class="sb-item" href="#">Faixa-3.mp3</a>
+        <a class="sb-item" href="#">Faixa-4.mp3</a>
+        <a class="sb-item" href="#">Faixa-5.mp3</a>
+        <div class="sb-bottom"></div>
+    </div>
+    <div class="sb right animate-right" id="sb-playlists">
+        <p>Playlists</p>
+        <a class="sb-item" href="#">Playlist 1</a>
+        <a class="sb-item" href="#">Playlist 2</a>
+        <a class="sb-item" href="#">Playlist 3</a>
+        <div class="sb-bottom"></div>
+    </div>
+    
 </body>
+
 </html>
