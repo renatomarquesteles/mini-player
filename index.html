@@ -3,44 +3,120 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- a largura da página vai ser igual a largura do dispositivo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">    <!-- a largura da página vai ser igual a largura do dispositivo -->
     <title>SMN Music Player</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="icon" href="img/icon.png">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <script src="main.js"></script>
+    <script src="js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <header class="cabecalho">
-        <a href="index.html"><img class="logo" src="img/logo.png"></a>
-    </header>
-    <div class="menu">
-        <button class="btn"> <i class="fas fa-play fa-lg"></i> </button>
-        <button class="btn"> <i class="fas fa-bars fa-lg"></i> </button>
+    <div id="content">
+
+        <header class="cabecalho">  <!-- Cabeçalho com o logo -->
+            <a href="index.html">
+                <img class="logo" src="img/logo.png">
+            </a>
+        </header>
+
+        <div class="menu-bar">  <!-- Barra de menu com os botoes musicas e playlists -->
+            <button class="btn" onclick="openSlideMenuL()"> <!-- Botão que mostra lista de músicas (esquerda) -->
+                <i class="fas fa-play fa-lg"></i>
+            </button>
+            <button class="btn" onclick="openSlideMenuR()">   <!-- Botão que mostra lista de playlists (direita) -->
+                <i class="fas fa-bars fa-lg"></i>
+            </button>
+        </div>
+
+        <div id="menu-musicas" class="nav">     <!-- Sidebar da esquerda com as músicas -->
+            <button class="btn close" style="right:0;" onclick="closeSlideMenuL()">  <!-- Botão que esconde a sidebar -->
+                <i class="fas fa-times"></i>
+            </button>
+            <p>Músicas</p>
+            <div class="pesquisa">
+                <i class="fas fa-search fa-lg"></i>
+            </div>
+            <a href="#">Faixa-1.mp3</a>
+            <a href="#">Faixa-2.mp3</a>
+            <a href="#">Faixa-3.mp3</a>
+            <a href="#">Faixa-4.mp3</a>
+            <a href="#">Faixa-5.mp3</a>
+            <a href="#">Faixa-6.mp3</a>
+            <a href="#">Faixa-7.mp3</a>
+            <a href="#">Faixa-8.mp3</a>
+            <a href="#">Faixa-9.mp3</a>
+            <a href="#">Faixa-10.mp3</a>
+            <a href="#">Faixa-11.mp3</a>
+            <a href="#">Faixa-12.mp3</a>
+            <a href="#">Faixa-13.mp3</a>
+            <a href="#">Faixa-14.mp3</a>
+            <a href="#">Faixa-15.mp3</a>
+            <a href="#">Faixa-16.mp3</a>
+            <a href="#">Faixa-17.mp3</a>
+            <a href="#">Faixa-18.mp3</a>
+            <a href="#">Faixa-19.mp3</a>
+            <a href="#">Faixa-20.mp3</a>
+        </div>
+
+        <div id="menu-playlists" class="nav">      <!-- Sidebar da direita com as playlists -->
+            <button class="btn close" style="left:0;" onclick="closeSlideMenuR()">  <!-- Botão que esconde a sidebar -->
+                <i class="fas fa-times"></i>
+            </button>
+            <p>Playlists</p>
+            <a href="#">Playlist 1</a>
+            <a href="#">Playlist 2</a>
+            <a href="#">Playlist 3</a>
+        </div>
+
+        <div class="container">
+            <div class="capa">
+                <img src="img/ttoia.png"/>
+            </div>
+            <div class="info">
+                <p id="info-musica">The Thrill Of It All - Sam Smith</p>
+                <p id="info-album">Sam Smith    2017    Pop</p>
+            </div>
+            <div class="player">
+                <i class="fas fa-stop controles"></i>
+                <i class="fas fa-step-backward controles"></i>
+                <i class="fas fa-play controles"></i>
+                <i class="fas fa-step-forward controles"></i>
+                <i class="fas fa-redo controles"></i>
+                <i class="fas fa-random controles"></i>
+                <!-- <audio controls="controls" item-height="50px" item-width="100px" >
+                    <source src="music/Arctic Monkeys - Do I Wanna Know.mp3" type="audio/mp3"></source>
+                </audio> -->
+            </div>
+            <p>Lista de reprodução</p>
+            <div class="container2">
+                <div class="lista">
+                    <a href="#">Faixa-1.mp3</a>
+                    <a href="#">Faixa-2.mp3</a>
+                    <a href="#">Faixa-3.mp3</a>
+                    <a href="#">Faixa-4.mp3</a>
+                    <a href="#">Faixa-5.mp3</a>
+                    <a href="#">Faixa-6.mp3</a>
+                    <a href="#">Faixa-7.mp3</a>
+                    <a href="#">Faixa-8.mp3</a>
+                    <a href="#">Faixa-9.mp3</a>
+                    <a href="#">Faixa-10.mp3</a>
+                    <a href="#">Faixa-11.mp3</a>
+                    <a href="#">Faixa-12.mp3</a>
+                    <a href="#">Faixa-13.mp3</a>
+                    <a href="#">Faixa-14.mp3</a>
+                    <a href="#">Faixa-15.mp3</a>
+                    <a href="#">Faixa-16.mp3</a>
+                    <a href="#">Faixa-17.mp3</a>
+                    <a href="#">Faixa-18.mp3</a>
+                    <a href="#">Faixa-19.mp3</a>
+                    <a href="#">Faixa-20.mp3</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="sb animate-left" id="sb-musicas">
-        <p>Músicas</p>
-        <div class="pesquisa"><i class="fas fa-search fa-lg"></i></div>
-        <a class="sb-item" href="#">Faixa-1.mp3</a>
-        <a class="sb-item" href="#">Faixa-2.mp3</a>
-        <a class="sb-item" href="#">Faixa-3.mp3</a>
-        <a class="sb-item" href="#">Faixa-4.mp3</a>
-        <a class="sb-item" href="#">Faixa-5.mp3</a>
-        <div class="sb-bottom"></div>
-    </div>
-    <div class="sb right animate-right" id="sb-playlists">
-        <p>Playlists</p>
-        <a class="sb-item" href="#">Playlist 1</a>
-        <a class="sb-item" href="#">Playlist 2</a>
-        <a class="sb-item" href="#">Playlist 3</a>
-        <div class="sb-bottom"></div>
-    </div>
-    
 </body>
 
 </html>
