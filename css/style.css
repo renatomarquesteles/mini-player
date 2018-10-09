@@ -133,7 +133,18 @@ img {
     font-size: 14px;
 }
 .volume {
-    margin-left: 250px;
+    display:flex;
+    justify-content: flex-end;
+}
+#sliderVolume {
+    transform: rotate(-90deg);
+    position: absolute;
+    width: 100px;
+}
+.posicaoVolume {
+    width: 100%;
+    display:flex;
+    flex-direction: column;
 }
 .sliderContainer {
     width: 100%;
@@ -156,9 +167,6 @@ img {
     background-color: #00B0FF;
     border: 1px solid #0091EA;
     cursor: pointer;
-}
-#sliderVolume {
-    transform: rotate(90deg);
 }
 #progBar {
     width: 0%;

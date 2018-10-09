@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- a largura da página vai ser igual a largura do dispositivo -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">    <!-- a largura da página vai ser igual a largura do dispositivo -->
     <title>SMN Music Player</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="icon" href="img/icon.png">
@@ -18,61 +17,34 @@
 <body>
     <div id="content">
 
-        <header class="cabecalho">
-            <!-- Cabeçalho com o logo -->
+        <header class="cabecalho">      <!-- Cabeçalho com o logo -->
             <a href="index.html">
                 <img class="logo" src="img/logo.png">
             </a>
         </header>
 
-        <div class="menu-bar">
-            <!-- Barra de menu com os botoes musicas e playlists -->
-            <button class="btn" onclick="openSlideMenuL()">
-                <!-- Botão que mostra lista de músicas (esquerda) -->
+        <div class="menu-bar">      <!-- Barra de menu com os botoes musicas e playlists -->
+            <button class="btn" onclick="openSlideMenuL()">     <!-- Botão que mostra lista de músicas (esquerda) -->
                 <i class="fas fa-play fa-lg"></i>
             </button>
-            <button class="btn" onclick="openSlideMenuR()">
-                <!-- Botão que mostra lista de playlists (direita) -->
+            <button class="btn" onclick="openSlideMenuR()">     <!-- Botão que mostra lista de playlists (direita) -->
                 <i class="fas fa-bars fa-lg"></i>
             </button>
         </div>
 
-        <div id="menu-musicas" class="nav">
-            <!-- Sidebar da esquerda com as músicas -->
-            <button class="btn close" style="right:0;" onclick="closeSlideMenuL()">
-                <!-- Botão que esconde a sidebar -->
+        <div id="menu-musicas" class="nav">     <!-- Sidebar da esquerda com as músicas -->
+            <button class="btn close" style="right:0;" onclick="closeSlideMenuL()">     <!-- Botão que esconde a sidebar -->
                 <i class="fas fa-times"></i>
             </button>
             <p>Músicas</p>
             <div class="pesquisa">
                 <i class="fas fa-search fa-lg"></i>
             </div>
-            <a href="#">Faixa-1.mp3</a>
-            <a href="#">Faixa-2.mp3</a>
-            <a href="#">Faixa-3.mp3</a>
-            <a href="#">Faixa-4.mp3</a>
-            <a href="#">Faixa-5.mp3</a>
-            <a href="#">Faixa-6.mp3</a>
-            <a href="#">Faixa-7.mp3</a>
-            <a href="#">Faixa-8.mp3</a>
-            <a href="#">Faixa-9.mp3</a>
-            <a href="#">Faixa-10.mp3</a>
-            <a href="#">Faixa-11.mp3</a>
-            <a href="#">Faixa-12.mp3</a>
-            <a href="#">Faixa-13.mp3</a>
-            <a href="#">Faixa-14.mp3</a>
-            <a href="#">Faixa-15.mp3</a>
-            <a href="#">Faixa-16.mp3</a>
-            <a href="#">Faixa-17.mp3</a>
-            <a href="#">Faixa-18.mp3</a>
-            <a href="#">Faixa-19.mp3</a>
-            <a href="#">Faixa-20.mp3</a>
+            <a id="musicas"></a>
         </div>
 
-        <div id="menu-playlists" class="nav">
-            <!-- Sidebar da direita com as playlists -->
-            <button class="btn close" style="left:0;" onclick="closeSlideMenuR()">
-                <!-- Botão que esconde a sidebar -->
+        <div id="menu-playlists" class="nav">       <!-- Sidebar da direita com as playlists -->
+            <button class="btn close" style="left:0;" onclick="closeSlideMenuR()">      <!-- Botão que esconde a sidebar -->
                 <i class="fas fa-times"></i>
             </button>
             <p>Playlists</p>
@@ -85,22 +57,26 @@
             <div class="capa">
                 <img src="img/ttoia.png" />
             </div>
-            <div class="volume">    <!-- Slider de volume -->
-                <i class="fas fa-volume-up fa-lg"></i>
-                <input type="range" min="1" max="100" value="50" class="slider" id="sliderVolume">
+            <div class="volume">        <!-- Slider de volume -->
+                <div class="posicaoVolume">
+                    <i class="fas fa-volume-up fa-lg"></i>
+                    <input type="range" min="0" max="100" value="100" class="slider" id="sliderVolume">
+                </div>
             </div>
-            <div class="info">     <!-- Informações sobre a música atual -->
+            <div class="info">      <!-- Informações sobre a música atual -->
                 <p id="info-musica">The Thrill Of It All - Sam Smith</p>
                 <p id="info-album">Sam Smith 2017 Pop</p>
             </div>
-            <div class="sliderContainer">   <!-- Slider de duração da música -->
-                <input type="range" min="1" max="100" value="50" class="slider" id="sliderMusica">
+            <div class="sliderContainer">       <!-- Slider de duração da música -->
+                <input type="range" min="1" max="100" value="1" class="slider" id="sliderMusica">
                 <div id="progBar"></div>
+                <p id="timerA">00:00</p>
+                <p id="timerF">00:00</p>
             </div>
-            <div class="player">    <!-- Botões do player -->
+            <div class="player">        <!-- Botões do player -->
                 <i class="fas fa-stop controles" id="stopBtn"></i>
                 <i class="fas fa-step-backward controles" id="prevBtn"></i>
-                <i class="fas fa-play controles" id="playBtn" onclick="fillBar()"></i>
+                <i class="fas fa-play controles" id="playBtn"></i>
                 <i class="fas fa-pause controles" id="pauseBtn"></i>
                 <i class="fas fa-step-forward controles" id="nextBtn"></i>
                 <i class="fas fa-redo controles" id="repeatBtn"></i>
