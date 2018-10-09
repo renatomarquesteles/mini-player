@@ -7,8 +7,7 @@
     <title>SMN Music Player</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="icon" href="img/icon.png">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <script src="js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -56,20 +55,26 @@
         <div class="container">
             <div class="capa">
                 <img src="img/ttoia.png" />
-            </div>
-            <div class="volume">        <!-- Slider de volume -->
-                <div class="posicaoVolume">
-                    <i class="fas fa-volume-up fa-lg"></i>
-                    <input type="range" min="0" max="100" value="100" class="slider" id="sliderVolume">
+                <div class="volume">
+                    <div class="posicaoVolume">     <!-- Slider de volume -->
+                        <div class="barraVol">
+                            <input type="range" min="0" max="100" value="100" class="slider" id="sliderVolume">
+                            <div class="slider" id="volBar"></div>
+                        </div>
+                        <i class="fas fa-volume-up fa-lg"></i>
+                    </div>
                 </div>
             </div>
+            
             <div class="info">      <!-- Informações sobre a música atual -->
                 <p id="info-musica">The Thrill Of It All - Sam Smith</p>
                 <p id="info-album">Sam Smith 2017 Pop</p>
             </div>
             <div class="sliderContainer">       <!-- Slider de duração da música -->
-                <input type="range" min="1" max="100" value="1" class="slider" id="sliderMusica">
-                <div id="progBar"></div>
+                <div class="posSlider">
+                    <input type="range" min="1" max="100" value="1" class="slider" id="sliderMusica">
+                    <div class="slider" id="progBar"></div>
+                </div>
                 <p id="timerA">00:00</p>
                 <p id="timerF">00:00</p>
             </div>
