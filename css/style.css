@@ -66,6 +66,7 @@ img {
 #menu-playlists {
     right: 0;
 }
+/* Side-bars Musicas(L) e Playlists(R) */
 .nav {
     height: 100%;
     width: 0;
@@ -79,13 +80,6 @@ img {
     transition: 0.4s;
     box-shadow: 5px 0 20px rgba(0, 0, 0, 0.2), -5px 0 20px rgba(0, 0, 0, 0.2); 
 }
-.nav a {
-    display: block;
-    padding: 20px 30px;
-    font-size: 14px;
-    text-decoration: none;
-    background-color: #212121;
-}
 .nav a:hover {
     color: #fff;
     transition: 0.4s;
@@ -97,7 +91,7 @@ img {
 .nav button {
     background-color: #3B3B3B;
 }
-.nav .close {
+.close {
     position: absolute;
     top: 0;
     padding: 22px;
@@ -133,33 +127,56 @@ img {
     font-size: 14px;
 }
 .volume {
+    width:100%;
+    margin-top: 5px;
     display: flex;
     justify-content: flex-end;
 }
 .posicaoVolume {
-    margin: 5px 5px;
     display:flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    position: relative;
+    margin-right: 7px;
 }
 .barraVol {
-    height: 100px;
-    bottom: 80px;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    margin-left: 10px;
+    width: 100px;
+    height: 10px;
+    right: 0;
+    position: relative;
+    display: none;
     align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background: #E5E5E5;
 }
 #sliderVolume {
-    transform: rotate(-90deg);
+    -webkit-appearance: none;
     width: 100px;
+    height: 10px;
+    z-index: 10;
+    background: transparent;
+    display: none;
 }
 #volBar {
-    transform: rotate(-90deg);
-    width: 50px;
+    position: absolute;
+    left: 0;
+    -webkit-appearance: none;
+    display: none;
+    width: 100px;
+    height: 10px;
+    border-radius: 5px;
     background: #00B0FF;
+}
+#sliderVolume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #00B0FF;
+    border: 1px solid #0091EA;
+    cursor: pointer;
 }
 .sliderContainer {
     width: 100%;
@@ -168,10 +185,9 @@ img {
     display:flex;
     justify-content: center;
     align-items: center;
-    position: relative;
 }
 .sliderContainer p {
-    margin-left: 12px;
+    margin: 0 12px 0 6px;;
 }
 .posSlider {
     width: 70%;
@@ -181,6 +197,7 @@ img {
     align-items: center;
     background: #E5E5E5;
     border-radius: 50px;
+    margin: 0 12px 0 12px;
 }
 #sliderMusica {
     z-index: 10;
@@ -228,7 +245,7 @@ img {
     margin-left: 28px;
 }
 .controles:hover {
-    color: #fff;
+    color: #00B0FF;
 }
 #pauseBtn {
     display: none;
@@ -244,7 +261,9 @@ img {
     display: flex;
     flex-direction: column;
     padding: 6px;
+    background-color: #212121;
 }
-.lista a {
+.lista p {
     margin-bottom: 7px;
+    font-size: 14px;
 }

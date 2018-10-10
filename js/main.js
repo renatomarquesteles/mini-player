@@ -1,4 +1,4 @@
-var audio, musicas = "", i, music_index = 0, timerCont, shuffle = false;
+var audio, musicas = "", i, music_index = 0, timerCont, shuffle = false,showVol = false;
 var local = "music/"
 var ext = ".mp3"
 var musicList = [
@@ -8,7 +8,6 @@ var musicList = [
     "Migos - Walk It Talk It ft. Drake",
     "Kendrick Lamar - HUMBLE",
     "Drake - God's Plan"
-    
 ]
 var capas = [
     "godsplan.jpg",
@@ -28,20 +27,20 @@ window.onload = function () {
     document.getElementById("shuffleBtn").addEventListener("click", shuffleMusic)
     document.getElementById("sliderVolume").addEventListener("change", volume);
     document.getElementById("sliderMusica").addEventListener("change", posMusic);
-    // audio = new Audio(local + musicList[music_index] + ext);
+    document.getElementById("btnVolume").addEventListener("click", btnVol);
+    audio = new Audio(local + musicList[music_index] + ext);
     // audio.loop = false;
-    lista();
-    timer();
+    // lista();
 }
 function setMusic() {
     audio = new Audio(local + musicList[music_index] + ext);
 }
-function lista() {
-    for (i = 0; i < musicList.length; i++) {
-        musicas += musicList[i] + "<br/><br/>";
-    }
-    document.getElementById("musicas").innerHTML = musicas;
-}
+// function lista() {
+//     for (i = 0; i < musicList.length; i++) {
+//         musicas += musicList[i] + "<br/><br/>";
+//     }
+//     document.getElementById("musicas").innerHTML = musicas;
+// }
 function playMusic() {
     setMusic();
     audio.play();
@@ -82,7 +81,7 @@ function prevMusic() {
 function loopMusic() {
     if (audio.loop == false) {
         audio.loop = true;
-        document.getElementById("repeatBtn").style.color = "#00E676";
+        document.getElementById("repeatBtn").style.color = "#00B0FF";
     }
     else {
         audio.loop = false;
@@ -92,7 +91,7 @@ function loopMusic() {
 function shuffleMusic() {
     if(shuffle == false){
         shuffle = true;
-        document.getElementById("shuffleBtn").style.color = "#00E676";
+        document.getElementById("shuffleBtn").style.color = "#00B0FF";
     }
     else {
         shuffle = false;
@@ -105,6 +104,20 @@ function volume() {
 }
 function posMusic() {
     audio.currentTime = ((document.getElementById("sliderMusica").value / 100) * audio.duration);
+}
+function btnVol() {
+    if(showVol == false){
+        showVol = true;
+        document.querySelector('#sliderVolume').style.display = "block";
+        document.querySelector('#volBar').style.display = "block";
+        document.querySelector('.barraVol').style.display = "flex";
+    }
+    else {
+        showVol = false;
+        document.querySelector('#sliderVolume').style.display = "none";
+        document.querySelector('#volBar').style.display = "none";
+        document.querySelector('.barraVol').style.display = "none";
+    }
 }
 function timer() {
     atual = (audio.currentTime).toFixed(0);
