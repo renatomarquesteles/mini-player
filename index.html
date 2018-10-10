@@ -39,14 +39,79 @@
             <div class="pesquisa">
                 <i class="fas fa-search fa-lg"></i>
             </div>
-            <!-- <a id="musicas"></a> -->
             <div class="lista">
-                <p>Arctic Monkeys - Do I Wanna Know</p>
-                <p>Drake - Nice For What</p>
-                <p>Drake - Legend</p>
-                <p>Migos - Walk It Talk It ft. Drake</p>
-                <p>Kendrick Lamar - HUMBLE</p>
-                <p>Drake - God's Plan</p>
+                <p onclick="showModal(0)">Arctic Monkeys - Do I Wanna Know</p>
+                <div id="m0Modal" class="modal">
+                    <div class="modal-content">
+                        <h1>Arctic Monkeys - Do I Wanna Know</h1>
+                        <span onclick="closeModal(0)" class="closeModal">&times;</span>
+                        <img src="img/doiwannaknwo.jpg">
+                        <p>Artista: Arctic Monkeys<br>Ano:2013<br>Gênero: Indie Rock</p>
+                        <a onclick="addRep(0)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
+                        <a><i class="fas fa-list"></i> Adicionar à Playlist</a>
+                        <button class="btnPlay">PLAY</button>
+                    </div>
+                </div>
+                <p onclick="showModal(1)">Drake - Nice For What</p>
+                <div id="m1Modal" class="modal">
+                    <div class="modal-content">
+                        <h1>Drake - Nice For What</h1>
+                        <span onclick="closeModal(1)" class="closeModal">&times;</span>
+                        <img src="img/niceforwhat.jpg">
+                        <p>Artista: Drake<br>Ano:2018<br>Gênero: Hip-hop</p>
+                        <a onclick="addRep(1)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
+                        <a><i class="fas fa-list"></i> Adicionar à Playlist</a>
+                        <button class="btnPlay">PLAY</button>
+                    </div>
+                </div>
+                <p onclick="showModal(2)">Drake - Legend</p>
+                <div id="m2Modal" class="modal">
+                    <div class="modal-content">
+                        <h1>Drake - Legend</h1>
+                        <span onclick="closeModal(2)" class="closeModal">&times;</span>
+                        <img src="img/legend.jpg">
+                        <p>Artista: Drake<br>Ano:2015<br>Gênero: Hip-hop</p>
+                        <a onclick="addRep(2)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
+                        <a><i class="fas fa-list"></i> Adicionar à Playlist</a>
+                        <button class="btnPlay">PLAY</button>
+                    </div>
+                </div>
+                <p onclick="showModal(3)">Migos - Walk It Talk It ft. Drake</p>
+                <div id="m3Modal" class="modal">
+                    <div class="modal-content">
+                        <h1>Migos - Walk It Talk It ft. Drake</h1>
+                        <span onclick="closeModal(3)" class="closeModal">&times;</span>
+                        <img src="img/walkittalkit.jpg">
+                        <p>Artista: Migos<br>Ano:2018<br>Gênero: Trap, Hip-Hop</p>
+                        <a onclick="addRep(3)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
+                        <a><i class="fas fa-list"></i> Adicionar à Playlist</a>
+                        <button class="btnPlay">PLAY</button>
+                    </div>
+                </div>
+                <p onclick="showModal(4)">Kendrick Lamar - HUMBLE</p>
+                <div id="m4Modal" class="modal">
+                    <div class="modal-content">
+                        <h1>Kendrick Lamar - HUMBLE</h1>
+                        <span onclick="closeModal(4)" class="closeModal">&times;</span>
+                        <img src="img/humble.jpg">
+                        <p>Artista: Kendrick Lamar<br>Ano:2017<br>Gênero: Hip-Hop</p>
+                        <a onclick="addRep(4)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
+                        <a><i class="fas fa-list"></i> Adicionar à Playlist</a>
+                        <button class="btnPlay">PLAY</button>
+                    </div>
+                </div>
+                <p onclick="showModal(5)">Drake - God's Plan</p>
+                <div id="m5Modal" class="modal">
+                    <div class="modal-content">
+                        <h1>Drake - God's Plan</h1>
+                        <span onclick="closeModal(5)" class="closeModal">&times;</span>
+                        <img src="img/godsplan.jpg">
+                        <p>Artista: Drake<br>Ano:2018<br>Gênero: Pop, Trap</p>
+                        <a onclick="addRep(5)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
+                        <a><i class="fas fa-list"></i> Adicionar à Playlist</a>
+                        <button class="btnPlay">PLAY</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -56,9 +121,12 @@
             </button>
             <p>Playlists</p>
             <div class="lista">
-            <p>Playlist 1</p>
-            <p>Playlist 2</p>
-            <p>Playlist 3</p>
+                <p>Playlist 1</p>
+                <div class="subLista"></div>    <!-- Músicas da Playlist 1 -->
+                <p>Playlist 2</p>
+                <div class="subLista"></div>    <!-- Músicas da Playlist 2 -->
+                <p>Playlist 3</p>
+                <div class="subLista"></div>    <!-- Músicas da Playlist 3 -->
             </div>
         </div>
 
@@ -99,14 +167,9 @@
             </div>
             <p>Lista de reprodução</p>
             <div class="container2">
-                    <div class="lista">
-                        <p>Arctic Monkeys - Do I Wanna Know</p>
-                        <p>Drake - Nice For What</p>
-                        <p>Drake - Legend</p>
-                        <p>Migos - Walk It Talk It ft. Drake</p>
-                        <p>Kendrick Lamar - HUMBLE</p>
-                        <p>Drake - God's Plan</p>
-                    </div>
+                <div class="lista">
+                    <p id="repList"></p>
+                </div>
             </div>
         </div>
     </div>
