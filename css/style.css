@@ -97,10 +97,23 @@ img {
     padding: 22px;
 }
 .pesquisa {
+    width: 90%;
     margin: 10px 8px;
+    position: relative;
     padding: 12px;
     border: 1px solid #707070;
     border-radius: 30px;
+}
+.pesquisa input {
+    width: 120px;
+    margin-left: 25px;
+    background-color: #3B3B3B;
+    
+}
+.pesquisa i {
+    position: absolute;
+    left: 10px;
+    top: 14px;
 }
 /* CONTEÚDO */
 #content {
@@ -118,13 +131,15 @@ img {
 .info p{
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    margin: 10px;
+    margin: 3px;
 }
 #info-musica {
     font-size: 16px;
 }
 #info-album {
     font-size: 14px;
+    display: flex;
+    justify-content: center;
 }
 .volume {
     width:100%;
@@ -236,7 +251,7 @@ img {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 10px;
+    margin: 20px;
 }
 .controles {
     margin-left: 28px;
@@ -258,17 +273,25 @@ img {
     display: flex;
     flex-direction: column;
     padding: 6px;
-    background-color: #212121;
     /* position: relative; */
 }
 .lista p {
-    margin-bottom: 7px;
+    /* margin-bottom: 7px; */
     font-size: 14px;
     cursor: pointer;
+    background-color: #212121;
+}
+.lista button {
+    background-color: #3B3B3B;
+    margin-left: -70px;
 }
 .subLista {
     background-color: #191919;
     display: none;
+}
+.repLista {
+    display: flex;
+    justify-content: space-between;
 }
 .modal {
     display: none;
@@ -314,6 +337,9 @@ img {
     font-size: 14px;
     cursor: pointer;
 }
+.modal-content a:hover {
+    color: #00B0FF;
+}
 .modal-content h1 {
     font-size: 20px;
     padding: 0 0 20px 20px;
@@ -323,6 +349,7 @@ img {
 }
 .modal-content p {
     margin: 0 0 5px 5px;
+    cursor: auto;
 }
 .closeModal {
     color: #aaaaaa;

@@ -37,6 +37,7 @@
             </button>
             <p>Músicas</p>
             <div class="pesquisa">
+                <input type="text" placeholder="Buscar..."/>
                 <i class="fas fa-search fa-lg"></i>
             </div>
             <div class="lista">
@@ -45,11 +46,11 @@
                     <div class="modal-content">
                         <h1>Arctic Monkeys - Do I Wanna Know</h1>
                         <span onclick="closeModal(0)" class="closeModal">&times;</span>
-                        <img src="img/doiwannaknwo.jpg">
+                        <img src="img/WannaKnow.jpg">
                         <p>Artista: Arctic Monkeys<br>Ano:2013<br>Gênero: Indie Rock</p>
                         <a onclick="addRep(0)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
                         <a><i class="fas fa-list"></i> Adicionar à Playlist</a>
-                        <button class="btnPlay">PLAY</button>
+                        <button class="btnPlay" onclick="playNow(0)">PLAY</button>
                     </div>
                 </div>
                 <p onclick="showModal(1)">Drake - Nice For What</p>
@@ -57,11 +58,11 @@
                     <div class="modal-content">
                         <h1>Drake - Nice For What</h1>
                         <span onclick="closeModal(1)" class="closeModal">&times;</span>
-                        <img src="img/niceforwhat.jpg">
+                        <img src="img/Nice.jpg">
                         <p>Artista: Drake<br>Ano:2018<br>Gênero: Hip-hop</p>
                         <a onclick="addRep(1)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
                         <a><i class="fas fa-list"></i> Adicionar à Playlist</a>
-                        <button class="btnPlay">PLAY</button>
+                        <button class="btnPlay" onclick="playNow(1)">PLAY</button>
                     </div>
                 </div>
                 <p onclick="showModal(2)">Drake - Legend</p>
@@ -69,11 +70,11 @@
                     <div class="modal-content">
                         <h1>Drake - Legend</h1>
                         <span onclick="closeModal(2)" class="closeModal">&times;</span>
-                        <img src="img/legend.jpg">
+                        <img src="img/Legend.jpg">
                         <p>Artista: Drake<br>Ano:2015<br>Gênero: Hip-hop</p>
                         <a onclick="addRep(2)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
                         <a><i class="fas fa-list"></i> Adicionar à Playlist</a>
-                        <button class="btnPlay">PLAY</button>
+                        <button class="btnPlay" onclick="playNow(2)">PLAY</button>
                     </div>
                 </div>
                 <p onclick="showModal(3)">Migos - Walk It Talk It ft. Drake</p>
@@ -81,11 +82,11 @@
                     <div class="modal-content">
                         <h1>Migos - Walk It Talk It ft. Drake</h1>
                         <span onclick="closeModal(3)" class="closeModal">&times;</span>
-                        <img src="img/walkittalkit.jpg">
+                        <img src="img/WalkIt.jpg">
                         <p>Artista: Migos<br>Ano:2018<br>Gênero: Trap, Hip-Hop</p>
                         <a onclick="addRep(3)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
                         <a><i class="fas fa-list"></i> Adicionar à Playlist</a>
-                        <button class="btnPlay">PLAY</button>
+                        <button class="btnPlay" onclick="playNow(3)">PLAY</button>
                     </div>
                 </div>
                 <p onclick="showModal(4)">Kendrick Lamar - HUMBLE</p>
@@ -93,11 +94,11 @@
                     <div class="modal-content">
                         <h1>Kendrick Lamar - HUMBLE</h1>
                         <span onclick="closeModal(4)" class="closeModal">&times;</span>
-                        <img src="img/humble.jpg">
+                        <img src="img/Humble.jpg">
                         <p>Artista: Kendrick Lamar<br>Ano:2017<br>Gênero: Hip-Hop</p>
                         <a onclick="addRep(4)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
                         <a><i class="fas fa-list"></i> Adicionar à Playlist</a>
-                        <button class="btnPlay">PLAY</button>
+                        <button class="btnPlay" onclick="playNow(4)">PLAY</button>
                     </div>
                 </div>
                 <p onclick="showModal(5)">Drake - God's Plan</p>
@@ -105,11 +106,11 @@
                     <div class="modal-content">
                         <h1>Drake - God's Plan</h1>
                         <span onclick="closeModal(5)" class="closeModal">&times;</span>
-                        <img src="img/godsplan.jpg">
+                        <img src="img/GodsPlan.jpg">
                         <p>Artista: Drake<br>Ano:2018<br>Gênero: Pop, Trap</p>
                         <a onclick="addRep(5)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
                         <a><i class="fas fa-list"></i> Adicionar à Playlist</a>
-                        <button class="btnPlay">PLAY</button>
+                        <button class="btnPlay" onclick="playNow(5)">PLAY</button>
                     </div>
                 </div>
             </div>
@@ -121,21 +122,17 @@
             </button>
             <p>Playlists</p>
             <div class="lista">
-                <p>Playlist 1</p>
-                <div class="subLista"></div>    <!-- Músicas da Playlist 1 -->
-                <p>Playlist 2</p>
-                <div class="subLista"></div>    <!-- Músicas da Playlist 2 -->
-                <p>Playlist 3</p>
-                <div class="subLista"></div>    <!-- Músicas da Playlist 3 -->
+                <p id="playlists"></p>
+                <button onclick="saveList()"><i class="fas fa-plus-circle"></i> Criar Playlist</button>
             </div>
         </div>
 
         <div class="container">
-            <div class="capa">
-                <img src="img/ttoia.png" />
+            <div>
+                <p id="capa"><img src="img/capa.jpg" /></p>
                 <div class="volume">
                     <div class="posicaoVolume">     <!-- Slider de volume -->
-                        <i class="fas fa-volume-up fa-lg" id="btnVolume"></i>
+                        <i class="fas fa-volume-up fa-lg controles" id="btnVolume"></i>
                         <div class="barraVol">
                             <input type="range" min="0" max="100" value="100" id="sliderVolume">
                             <div id="volBar"></div>
@@ -145,8 +142,12 @@
             </div>
             
             <div class="info">      <!-- Informações sobre a música atual -->
-                <p id="info-musica">The Thrill Of It All - Sam Smith</p>
-                <p id="info-album">Sam Smith 2017 Pop</p>
+                <p id="info-musica">Nenhuma faixa adicionada à lista de reprodução</p>
+                <div id="info-album">
+                    <p id="info-artista">Artista: </p>
+                    <p id="info-ano">Ano: </p>
+                    <p id="info-genero">Gênero: </p>
+                </div>
             </div>
             <div class="sliderContainer">       <!-- Slider de duração da música -->
                 <div class="posSlider">
