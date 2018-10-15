@@ -84,7 +84,7 @@ img {
     color: #fff;
     transition: 0.4s;
 }
-.nav p {
+.nav h1 {
     padding: 7px;
     font-size: 20px;
 }
@@ -274,17 +274,23 @@ img {
     display: flex;
     flex-direction: column;
     padding: 6px;
+    background-color: #212121;
+    font-size: 14px;
 }
 .lista p {
-    font-size: 14px;
-    cursor: pointer;
-    background-color: #212121;
+    padding: 7px;
 }
 .lista p:hover {
     color: #fff;
+    cursor: pointer;
 }
 .lista a:hover {
     color: #fff;
+    cursor: pointer;
+}
+.btn-addmsc {
+    width: auto;
+    color: #808080;
 }
 .lista button {
     background-color: #3B3B3B;
@@ -373,6 +379,10 @@ img {
 .modal-content p {
     padding: 10px;
     cursor: auto;
+}
+.modal-content h2 {
+    padding: 10px;
+    cursor: default;
 }
 #opcoesPL {
     display: flex;

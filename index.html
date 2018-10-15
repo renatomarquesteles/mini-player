@@ -35,7 +35,7 @@
             <button class="btn close" style="right:0;" onclick="closeSlideMenuL()">     <!-- Botão que esconde a sidebar -->
                 <i class="fas fa-times"></i>
             </button>
-            <p>Músicas</p>
+            <h1>Músicas</h1>
             <div class="pesquisa">
                 <input type="text" placeholder="Buscar..." id="filtro" onkeyup="filtrar()"/>
                 <i class="fas fa-search fa-lg"></i>
@@ -47,7 +47,7 @@
                         <h1>Arctic Monkeys - Do I Wanna Know</h1>
                         <span onclick="closeModal(0)" class="closeModal">&times;</span> <!-- Fecha o modal -->
                         <img src="img/WannaKnow.jpg">
-                        <p>Artista: Arctic Monkeys<br>Ano:2013<br>Gênero: Indie Rock</p>
+                        <h2>Artista: Arctic Monkeys<br>Ano:2013<br>Gênero: Indie Rock</h2>
                         <a onclick="addRep(0)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
                         <a onclick="PLlist(0)"><i class="fas fa-list"></i> Adicionar à Playlist</a>
                         <button class="btn-Embaixo" onclick="playNow(0)">PLAY</button>
@@ -59,7 +59,7 @@
                         <h1>Drake - Nice For What</h1>
                         <span onclick="closeModal(1)" class="closeModal">&times;</span> <!-- Fecha o modal -->
                         <img src="img/Nice.jpg">
-                        <p>Artista: Drake<br>Ano:2018<br>Gênero: Hip-hop</p>
+                        <h2>Artista: Drake<br>Ano:2018<br>Gênero: Hip-hop</h2>
                         <a onclick="addRep(1)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
                         <a onclick="PLlist(1)"><i class="fas fa-list"></i> Adicionar à Playlist</a>
                         <button class="btn-Embaixo" onclick="playNow(1)">PLAY</button>
@@ -71,7 +71,7 @@
                         <h1>Drake - Legend</h1>
                         <span onclick="closeModal(2)" class="closeModal">&times;</span> <!-- Fecha o modal -->
                         <img src="img/Legend.jpg">
-                        <p>Artista: Drake<br>Ano:2015<br>Gênero: Hip-hop</p>
+                        <h2>Artista: Drake<br>Ano:2015<br>Gênero: Hip-hop</h2>
                         <a onclick="addRep(2)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
                         <a onclick="PLlist(2)"><i class="fas fa-list"></i> Adicionar à Playlist</a>
                         <button class="btn-Embaixo" onclick="playNow(2)">PLAY</button>
@@ -83,7 +83,7 @@
                         <h1>Migos - Walk It Talk It ft. Drake</h1>
                         <span onclick="closeModal(3)" class="closeModal">&times;</span> <!-- Fecha o modal -->
                         <img src="img/WalkIt.jpg">
-                        <p>Artista: Migos<br>Ano:2018<br>Gênero: Trap, Hip-Hop</p>
+                        <h2>Artista: Migos<br>Ano:2018<br>Gênero: Trap, Hip-Hop</h2>
                         <a onclick="addRep(3)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
                         <a onclick="PLlist(3)"><i class="fas fa-list"></i> Adicionar à Playlist</a>
                         <button class="btn-Embaixo" onclick="playNow(3)">PLAY</button>
@@ -95,7 +95,7 @@
                         <h1>Kendrick Lamar - HUMBLE</h1>
                         <span onclick="closeModal(4)" class="closeModal">&times;</span> <!-- Fecha o modal -->
                         <img src="img/Humble.jpg">
-                        <p>Artista: Kendrick Lamar<br>Ano:2017<br>Gênero: Hip-Hop</p>
+                        <h2>Artista: Kendrick Lamar<br>Ano:2017<br>Gênero: Hip-Hop</h2>
                         <a onclick="addRep(4)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
                         <a onclick="PLlist(4)"><i class="fas fa-list"></i> Adicionar à Playlist</a>
                         <button class="btn-Embaixo" onclick="playNow(4)">PLAY</button>
@@ -107,7 +107,7 @@
                         <h1>Drake - God's Plan</h1>
                         <span onclick="closeModal(5)" class="closeModal">&times;</span> <!-- Fecha o modal -->
                         <img src="img/GodsPlan.jpg">
-                        <p>Artista: Drake<br>Ano:2018<br>Gênero: Pop, Trap</p>
+                        <h2>Artista: Drake<br>Ano:2018<br>Gênero: Pop, Trap</h2>
                         <a onclick="addRep(5)"><i class="far fa-plus-square"></i> Adicionar à lista de Reprodução</a>
                         <a onclick="PLlist(5)"><i class="fas fa-list"></i> Adicionar à Playlist</a>
                         <button class="btn-Embaixo" onclick="playNow(5)">PLAY</button>
@@ -196,7 +196,7 @@
             <div class="container2">
                 <div class="lista">
                     <p id="repList"></p>
-                    <p><a style="color: #808080" onclick="openSlideMenuL()">+ Adicionar músicas à lista de reprodução</a></p>
+                    <label><a class="btn-addmsc" onclick="openSlideMenuL()">+ Adicionar músicas à lista de reprodução</a></label>
                 </div>
             </div>
         </div>
