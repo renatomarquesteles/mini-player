@@ -3,6 +3,7 @@ var audio = null,       // Variável que irá receber as músicas
     shuffle = false,    // Variável que indica se o botão de shuffle está ativado ou não
     loop = false,       // Variável que indica se o botão de loop está ativado ou não
     showVol = false,    // Variável que indica se a barra de volume está visível ou não
+    valorVol = 100,           // Variável que irá guardar o valor do volume
     local_M = "music/", // Variável que indica o local da música
     ext_M = ".mp3",     // Variável que indica a extensão da música
     listagem,           // Variável que servirá de key para o localStorage
@@ -17,8 +18,11 @@ var audio = null,       // Variável que irá receber as músicas
     ],
     local_C = "img/",   // Variável que indica o local da imagem de capa
     ext_C = ".jpg",     // Variável que indica a extensão da imagem de capa
-    repList = [];       // Lista de reprodução
-    playlist = [];      // Lista de playlists
+    repList = [],       // Lista de reprodução
+    playlist = [],      // Lista de playlists
+    filtro = document.getElementById("filtro"), // Variável para filtragem da pesquisa de músicas
+    nomes = [],     // Vetor para guardar os nomes das músicas para utilizar no filtro
+    timerIntervalo;
 
 window.onclick = function(event) {      // Funções para fechar modal e sidebars clicando na tela
     if (event.target == document.querySelector("#m0Modal")) {
@@ -61,7 +65,6 @@ window.onload = function () {       // Comandos que serão executados ao carrega
     document.getElementById("sliderVolume").addEventListener("change", volume);
     document.getElementById("sliderMusica").addEventListener("change", posMusic);
     document.getElementById("btnVolume").addEventListener("click", btnVol);
-    audio = new Audio(local_M + musicList.nome[music_index] + ext_M);
     // for (let i = 0; i<10; i++){     // Pega playlists armazenadas no localStorage
     //     playlist.push(localStorage.getItem(('Playlist '+i)) ? JSON.parse(localStorage.getItem(('Playlist '+i))) : []);
     // }
@@ -81,12 +84,32 @@ function addRep(index) {    // Adiciona uma música à lista de reprodução
 }
 function removeMusic(x) {   // Remove uma música da lista de reprodução
     repList.splice(x,1);
+    if(music_index == x){
+        if(music_index > 0){
+            music_index--;
+            nextMusic();
+        }
+        if(audio != null){
+            stopMusic();
+        }
+        if(repList.length == 0){
+            audio = null;
+            clearInterval(timerIntervalo);
+            document.getElementById("info-musica").innerHTML = "Nenhuma faixa adicionada à lista de reprodução";
+            document.getElementById("info-artista").innerHTML = "Artista: ";
+            document.getElementById("info-ano").innerHTML = "Ano: ";
+            document.getElementById("info-genero").innerHTML = "Gênero: ";
+            document.getElementById("capa").innerHTML = "<img src='img/capa.jpg' />";
+            document.getElementById("timerA").innerHTML = "00:00";
+            document.getElementById("timerF").innerHTML = "00:00";
+        }
+    }
     attList();
 }
 function attList() {    // Atualiza a lista de reprodução
     let aux = "";
     for (let i = 0; i < repList.length; i++) {
-        aux += "<div class='repLista'><p id='list"+i+"' onclick='selectMusic("+i+")'>" + repList[i].nome + "</p><i class='fas fa-times' onclick='removeMusic("+i+")'></i></div>";
+        aux += `<div class='repLista'><p id='list${i}' onclick='selectMusic(${i})'>${repList[i].nome}</p><i class='fas fa-times' onclick='removeMusic(${i})'></i></div>`;
     }
     document.getElementById("repList").innerHTML = aux;
     colorRep();
@@ -109,7 +132,12 @@ function setMusic() {   // Define a música que irá tocar
 }
 function playMusic() {  // Inicia a música
     if(audio == null){
-        setMusic();
+        if(repList.length > 0){
+            setMusic();
+        }
+        else{
+            openSlideMenuL();
+        }
     }
     audio.play();
     document.getElementById("playBtn").style.display = "none";
@@ -118,14 +146,19 @@ function playMusic() {  // Inicia a música
     document.getElementById("info-artista").innerHTML = repList[music_index].artista;
     document.getElementById("info-ano").innerHTML = repList[music_index].ano;
     document.getElementById("info-genero").innerHTML = repList[music_index].genero;
-    document.getElementById("capa").innerHTML = '<img src="' + local_C + repList[music_index].capa + ext_C + '"/>';
+    document.getElementById("capa").innerHTML = `<img src="${local_C}${repList[music_index].capa}${ext_C}"/>`;
     colorRep();
-    setInterval(timer, 1000);
+    volume();
+    timerIntervalo = setInterval(timer, 1000);
+    closeSlideMenuL();
+    closeSlideMenuR();
 }
 function pauseMusic() { // Pausa a música
     audio.pause();
     document.getElementById("playBtn").style.display = "initial";
     document.getElementById("pauseBtn").style.display = "none";
+    closeSlideMenuL();
+    closeSlideMenuR();
 }
 function stopMusic() {  // Para e reseta a música
     audio.pause();
@@ -133,6 +166,8 @@ function stopMusic() {  // Para e reseta a música
     document.getElementById("playBtn").style.display = "initial";
     document.getElementById("pauseBtn").style.display = "none";
     document.getElementById("sliderMusica").value = 0;
+    closeSlideMenuL();
+    closeSlideMenuR();
 }
 function nextMusic() {  // Passa para a música seguinte
     if(loop == false){  // Verifica se o botão repeat está ativo
@@ -151,6 +186,8 @@ function nextMusic() {  // Passa para a música seguinte
     stopMusic();
     setMusic();
     playMusic();
+    closeSlideMenuL();
+    closeSlideMenuR();
 }
 function prevMusic() {  // Volta para a música anterior
     if(loop == false){  // Verifica se o botão repeat está ativo
@@ -172,6 +209,8 @@ function prevMusic() {  // Volta para a música anterior
     stopMusic();
     setMusic();
     playMusic();
+    closeSlideMenuL();
+    closeSlideMenuR();
 }
 function loopMusic() {  // Ativa ou desativa a função repeat
     if (loop == false) {
@@ -182,6 +221,8 @@ function loopMusic() {  // Ativa ou desativa a função repeat
         loop = false;
         document.getElementById("repeatBtn").style.color = "#E0E0E0";
     }
+    closeSlideMenuL();
+    closeSlideMenuR();
 }
 function shuffleMusic() {   // Ativa ou desativa a função aleatório(shuffle)
     if (shuffle == false) {
@@ -192,10 +233,17 @@ function shuffleMusic() {   // Ativa ou desativa a função aleatório(shuffle)
         shuffle = false;
         document.getElementById("shuffleBtn").style.color = "#E0E0E0";
     }
+    closeSlideMenuL();
+    closeSlideMenuR();
 }
 function volume() {     // Determina o volume da música
-    audio.volume = (document.getElementById("sliderVolume").value / 100);   // a função volume recebe valores entre 0 e 1, o input "sliderVolume" está setado com valores de 0 a 100
-    document.getElementById("volBar").style.width = document.getElementById("sliderVolume").value + "px";
+    valorVol = document.getElementById("sliderVolume").value;   // a função volume recebe valores entre 0 e 1, o input "sliderVolume" está setado com valores de 0 a 100
+    document.getElementById("volBar").style.width = valorVol + "px";
+    if (audio != null){
+        audio.volume = (valorVol / 100);
+    }
+    closeSlideMenuL();
+    closeSlideMenuR();
 }
 function posMusic() {   // Determina a posição atual (minutos e segundos) da música
     audio.currentTime = ((document.getElementById("sliderMusica").value / 100) * audio.duration);
@@ -213,6 +261,8 @@ function btnVol() {     // Mostra ou esconde a barra de volume
         document.querySelector('#volBar').style.display = "none";
         document.querySelector('.barraVol').style.display = "none";
     }
+    closeSlideMenuL();
+    closeSlideMenuR();
 }
 function timer() {  // Barra de reprodução da música
     atual = (audio.currentTime).toFixed(0);
@@ -257,6 +307,21 @@ function playNow(x) {   // Adiciona música na lista de reprodução e começa a
     playMusic();
     closeModal(x);
 }
+function filtrar() {
+    var nomeMusica = document.getElementById("filtro").value.toLowerCase();
+    for(let i = 0; i<=5; i++){
+        nomes.push(document.getElementById(`musica${i}`).innerText.toLowerCase());
+        if (nomeMusica == null){
+            document.getElementById(`musica${i}`).style.display = 'initial';
+        }
+        else if (nomes[i].indexOf(nomeMusica) != -1){
+            document.getElementById(`musica${i}`).style.display = 'initial';
+        }
+        else{
+            document.getElementById(`musica${i}`).style.display = 'none';
+        }
+    }
+}
 // Playlist
 function createPL() {   // Cria e armazena uma playlist
     var objeto = new Object();
@@ -295,7 +360,7 @@ function selectPL(y) {  // Lista e mostra opções da playlist selecionada
     for (let i = 0; i<playlist[y].musica.length; i++){
         aux += playlist[y].musica[i].nome+"<br/>";  // Listagem das músicas da playlist
     }
-    document.getElementById("opcoesPL").innerHTML = '<h1>'+ playlist[y].nome +'</h1><div class="itemList">'+aux + '</div><button class="btn-Centro" onclick="playPL('+y+')">PLAY</button><button class="btn-Centro" onclick="editPL('+y+')">EDITAR</button><button class="btn-Centro" onclick="removePL('+y+')">EXCLUIR</button>';
+    document.getElementById("opcoesPL").innerHTML = `<h1>${playlist[y].nome}</h1><div class="itemList">${aux}</div><button class="btn-Centro" onclick="playPL(${y})">PLAY</button><button class="btn-Centro" onclick="editPL(${y})">EDITAR</button><button class="btn-Centro" onclick="removePL(${y})">EXCLUIR</button>`;
 }
 function editPL(y){     // Edita playlist criando uma nova
     closeModal(7);
@@ -310,18 +375,14 @@ function removePL(y){   // Exclui playlist
     attPlaylist();
 }
 function playPL(y) {    // Adiciona playlist à lista de reprodução
-    if (repList.length == 0) {
-        for (let i = 0; i<playlist[y].musica.length; i++){
-            repList.push(playlist[y].musica[i]);
-        }    
-    }
-    else{
-        for (let i = 0; i<playlist[y].musica.length; i++){
-            repList.splice(music_index+1, 0, playlist[y].musica[i]);
-        }
-        music_index++;
+    if (audio != null){
         stopMusic();
     }
+    repList = [];
+    music_index = 0;
+    for (let i = 0; i<playlist[y].musica.length; i++){
+        repList.push(playlist[y].musica[i]);
+    }    
     attList();
     setMusic();
     playMusic();
@@ -330,7 +391,7 @@ function playPL(y) {    // Adiciona playlist à lista de reprodução
 function attPlaylist() {    // Atualiza lista de playlists
     let aux = "";
     for (let i = 0; i < playlist.length; i++) {
-        aux += '<p onclick="selectPL('+i+')">'+ playlist[i].nome +'</p>';
+        aux += `<p onclick="selectPL(${i})">${playlist[i].nome}</p>`;
     }
     document.getElementById("playlists").innerHTML = aux;
 }
@@ -338,10 +399,10 @@ function PLlist(z) {    // Mostra a lista de Playlists quando se quer adicionar 
     showModal(8);   // Abre modal com as opções de playlist
     let aux = "";
     for(let i = 0; i<playlist.length; i++){
-        aux += '<p><input type="checkbox" name="playlist" value="'+i+'">'+playlist[i].nome+'</p>';
+        aux += `<p><label><input type="checkbox" name="playlist" value="${i}">${playlist[i].nome}</label></p>`;
     }
     document.getElementById("PLlist").innerHTML = aux;
-    document.getElementById("botaoAddPL").innerHTML = '<button class="btn-Embaixo" onclick="addPL('+z+')">OK</button>';
+    document.getElementById("botaoAddPL").innerHTML = `<button class="btn-Embaixo" onclick="addPL(${z})">OK</button>`;
 }
 function addPL(x){  // Adiciona a música à(s) playlist(s) selecionada(s)
     var lista = document.getElementsByName("playlist");

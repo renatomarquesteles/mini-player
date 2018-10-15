@@ -280,6 +280,12 @@ img {
     cursor: pointer;
     background-color: #212121;
 }
+.lista p:hover {
+    color: #fff;
+}
+.lista a:hover {
+    color: #fff;
+}
 .lista button {
     background-color: #3B3B3B;
     margin-top: 10px;
@@ -294,6 +300,9 @@ img {
 }
 .subLista input {
     margin-right: 7px;
+}
+.subLista label {
+    cursor: pointer;
 }
 .repLista {
     display: flex;
@@ -374,8 +383,8 @@ img {
     background-color: #424242;
     color: #E0E0E0;
     margin: 0 auto 12px auto;
-    border: solid 1px #3B3B3B;
-    padding: 2px;
+    border: solid 1px rgb(150, 150, 150);
+    padding: 8px;
     border-radius: 5px;
     font-size: 20px;
 }

@@ -37,11 +37,11 @@
             </button>
             <p>Músicas</p>
             <div class="pesquisa">
-                <input type="text" placeholder="Buscar..."/>
+                <input type="text" placeholder="Buscar..." id="filtro" onkeyup="filtrar()"/>
                 <i class="fas fa-search fa-lg"></i>
             </div>
-            <div class="lista">
-                <p onclick="showModal(0)">Arctic Monkeys - Do I Wanna Know</p> 
+            <div class="lista" id="listaMusicas">
+                <p onclick="showModal(0)" id="musica0">Arctic Monkeys - Do I Wanna Know</p> 
                 <div id="m0Modal" class="modal">    <!-- Modal com informações da música -->
                     <div class="modal-content">
                         <h1>Arctic Monkeys - Do I Wanna Know</h1>
@@ -53,7 +53,7 @@
                         <button class="btn-Embaixo" onclick="playNow(0)">PLAY</button>
                     </div>
                 </div>
-                <p onclick="showModal(1)">Drake - Nice For What</p>
+                <p onclick="showModal(1)" id="musica1">Drake - Nice For What</p>
                 <div id="m1Modal" class="modal">    <!-- Modal com informações da música -->
                     <div class="modal-content">
                         <h1>Drake - Nice For What</h1>
@@ -65,7 +65,7 @@
                         <button class="btn-Embaixo" onclick="playNow(1)">PLAY</button>
                     </div>
                 </div>
-                <p onclick="showModal(2)">Drake - Legend</p>
+                <p onclick="showModal(2)" id="musica2">Drake - Legend</p>
                 <div id="m2Modal" class="modal">    <!-- Modal com informações da música -->
                     <div class="modal-content">
                         <h1>Drake - Legend</h1>
@@ -77,7 +77,7 @@
                         <button class="btn-Embaixo" onclick="playNow(2)">PLAY</button>
                     </div>
                 </div>
-                <p onclick="showModal(3)">Migos - Walk It Talk It ft. Drake</p>
+                <p onclick="showModal(3)" id="musica3">Migos - Walk It Talk It ft. Drake</p>
                 <div id="m3Modal" class="modal">    <!-- Modal com informações da música -->
                     <div class="modal-content">
                         <h1>Migos - Walk It Talk It ft. Drake</h1>
@@ -89,7 +89,7 @@
                         <button class="btn-Embaixo" onclick="playNow(3)">PLAY</button>
                     </div>
                 </div>
-                <p onclick="showModal(4)">Kendrick Lamar - HUMBLE</p>
+                <p onclick="showModal(4)" id="musica4">Kendrick Lamar - HUMBLE</p>
                 <div id="m4Modal" class="modal">    <!-- Modal com informações da música -->
                     <div class="modal-content">
                         <h1>Kendrick Lamar - HUMBLE</h1>
@@ -101,7 +101,7 @@
                         <button class="btn-Embaixo" onclick="playNow(4)">PLAY</button>
                     </div>
                 </div>
-                <p onclick="showModal(5)">Drake - God's Plan</p>
+                <p onclick="showModal(5)" id="musica5">Drake - God's Plan</p>
                 <div id="m5Modal" class="modal">    <!-- Modal com informações da música -->
                     <div class="modal-content modal-direita">
                         <h1>Drake - God's Plan</h1>
@@ -136,12 +136,12 @@
                 <input type="text" id="NomePL" placeholder="Nome da Playlist..."/>
                 <span onclick="closeModal(6)" class="closeModal">&times;</span>
                 <div class="subLista">
-                    <p><input type="checkbox" name="musica" value="0">Arctic Monkeys - Do I Wanna Know</p>
-                    <p><input type="checkbox" name="musica" value="1">Drake - Nice For What</p>
-                    <p><input type="checkbox" name="musica" value="2">Drake - Legend</p>
-                    <p><input type="checkbox" name="musica" value="3">Migos - Walk It Talk It ft. Drake</p>
-                    <p><input type="checkbox" name="musica" value="4">Kendrick Lamar - HUMBLE</p>
-                    <p><input type="checkbox" name="musica" value="5">Drake - God's Plan</p>
+                    <p><label for="00"><input type="checkbox" name="musica" value="0" id="00">Arctic Monkeys - Do I Wanna Know</label></p>
+                    <p><label for="01"><input type="checkbox" name="musica" value="1" id="01">Drake - Nice For What</label></p>
+                    <p><label for="02"><input type="checkbox" name="musica" value="2" id="02">Drake - Legend</label></p>
+                    <p><label for="03"><input type="checkbox" name="musica" value="3" id="03">Migos - Walk It Talk It ft. Drake</label></p>
+                    <p><label for="04"><input type="checkbox" name="musica" value="4" id="04">Kendrick Lamar - HUMBLE</label></p>
+                    <p><label for="05"><input type="checkbox" name="musica" value="5" id="05">Drake - God's Plan</label></p>
                 </div> 
                 <button class="btn-Embaixo" onclick="createPL()">SALVAR</button>
             </div>
@@ -196,6 +196,7 @@
             <div class="container2">
                 <div class="lista">
                     <p id="repList"></p>
+                    <p><a style="color: #808080" onclick="openSlideMenuL()">+ Adicionar músicas à lista de reprodução</a></p>
                 </div>
             </div>
         </div>
