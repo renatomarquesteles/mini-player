@@ -115,7 +115,7 @@ img {
     left: 10px;
     top: 14px;
 }
-/* CONTEÚDO */
+/* PLAYER */
 #content {
     transition: margin-left 0.7s;
     width: 100%;
@@ -240,11 +240,6 @@ img {
     border: 1px solid #0091EA;
     cursor: pointer;
 }
-#progBar {
-    width: 0%;
-    height: 10px;
-    background: #00B0FF;
-}
 .player {
     width: 100%;
     display: flex;
@@ -269,25 +264,36 @@ img {
     background-color: #212121;
     border: 1px solid #707070;
 }
+.itemList {
+    padding: 15px;
+    background-color: #191919;
+    height: 250px;
+    overflow: auto;
+}
 .lista {
     display: flex;
     flex-direction: column;
     padding: 6px;
-    /* position: relative; */
 }
 .lista p {
-    /* margin-bottom: 7px; */
     font-size: 14px;
     cursor: pointer;
     background-color: #212121;
 }
 .lista button {
     background-color: #3B3B3B;
-    margin-left: -70px;
+    margin-top: 10px;
+    cursor: pointer;
 }
 .subLista {
+    width: 80%;
+    height: 300px;
     background-color: #191919;
-    display: none;
+    margin: 0 auto 0 auto;
+    overflow: auto;
+}
+.subLista input {
+    margin-right: 7px;
 }
 .repLista {
     display: flex;
@@ -307,7 +313,7 @@ img {
 }
 .modal-content {
     background-color: #424242;
-    margin: auto auto auto 40px;
+    margin-left: 40px;
     padding: 0px;
     padding-top: 30px;
     border: 1px solid #888;
@@ -317,15 +323,23 @@ img {
     flex-direction: column;
     position: relative;
 }
+.centro {
+    margin: auto;
+}
 .modal-content button {
-    position: absolute;
     width: 100px;
     height: 30px;
-    right: 10px;
-    bottom: 5px;
     background-color: #0091EA;
     cursor: pointer;
     border-radius: 3px;
+}
+.btn-Embaixo {
+    right: 10px;
+    bottom: 5px;
+    position: absolute;
+}
+.btn-Centro {
+    margin: 20px auto 0 auto;
 }
 .modal-content button:hover {
     background-color: #00B0FF;
@@ -342,14 +356,28 @@ img {
 }
 .modal-content h1 {
     font-size: 20px;
-    padding: 0 0 20px 20px;
+    padding: 0 0 10px 20px;
 }
 .modal-content img {
     margin: 0 10px;
 }
 .modal-content p {
-    margin: 0 0 5px 5px;
+    padding: 10px;
     cursor: auto;
+}
+#opcoesPL {
+    display: flex;
+    flex-direction: column;
+}
+#NomePL {
+    width: 80%;
+    background-color: #424242;
+    color: #E0E0E0;
+    margin: 0 auto 12px auto;
+    border: solid 1px #3B3B3B;
+    padding: 2px;
+    border-radius: 5px;
+    font-size: 20px;
 }
 .closeModal {
     color: #aaaaaa;
