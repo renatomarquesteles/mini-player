@@ -430,6 +430,7 @@ function playPL(y) {    // Adiciona playlist à lista de reprodução
     setMusic();
     playMusic();
     closeModal(7);
+    closeModal(99);
 }
 function attPlaylist() {    // Atualiza lista de playlists
     let aux = "";
