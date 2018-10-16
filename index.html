@@ -18,7 +18,7 @@
 
         <header class="cabecalho">      <!-- Cabeçalho com o logo -->
             <a href="index.html">
-                <img class="logo" src="img/logo.png">
+                <img class="logo" src="img/logo.png"><h1>PLAYER</h1>
             </a>
         </header>
 
@@ -163,16 +163,7 @@
         </div>
         <div class="container">
             <div>
-                <p id="capa"><img src="img/capa.jpg" /></p> <!-- Imagem de capa do álbum -->
-                <div class="volume">    <!-- Volume -->
-                    <div class="posicaoVolume"> 
-                        <i class="fas fa-volume-up fa-lg controles" id="btnVolume"></i> <!-- Botão que ativa/desativa barra de volume -->
-                        <div class="barraVol">
-                            <input type="range" min="0" max="100" value="100" id="sliderVolume">    <!-- Slider de volume -->
-                            <div id="volBar"></div> <!-- Preenchimento da barra de volume -->
-                        </div>
-                    </div>
-                </div>
+                <div class="capa" id="capa"><img src="img/capa.jpg" /></div> <!-- Imagem de capa do álbum -->
             </div>
             
             <div class="info">      <!-- Informações sobre a música atual -->
@@ -186,21 +177,29 @@
             <div class="sliderContainer">   <!-- Barra de reprodução -->
                 <div class="posSlider">
                     <input type="range" min="1" max="100" value="1" class="slider" id="sliderMusica">   <!-- Slider de duração da música -->
-                    <div class="slider" id="progBar"></div> <!-- Preenchimento da barra de reprodução -->
                 </div>
-                <p id="timerA">00:00</p>
+                <p id="timerA">00:00</p>/
                 <p id="timerF">00:00</p>
             </div>
             <div class="player">        <!-- Botões do player -->
-                <i class="fas fa-stop controles" id="stopBtn"></i>
-                <i class="fas fa-step-backward controles" id="prevBtn"></i>
-                <i class="fas fa-play controles" id="playBtn"></i>
-                <i class="fas fa-pause controles" id="pauseBtn"></i>
-                <i class="fas fa-step-forward controles" id="nextBtn"></i>
-                <i class="fas fa-redo controles" id="repeatBtn"></i>
-                <i class="fas fa-random controles" id="shuffleBtn"></i>
+                <i class="fas fa-stop" id="stopBtn"></i>
+                <i class="fas fa-step-backward" id="prevBtn"></i>
+                <i class="fas fa-play" id="playBtn"></i>
+                <i class="fas fa-pause" id="pauseBtn"></i>
+                <i class="fas fa-step-forward" id="nextBtn"></i>
+                <i class="fas fa-redo" id="repeatBtn"></i>
+                <i class="fas fa-random" id="shuffleBtn"></i>
             </div>
-            <p>Lista de reprodução</p>
+            <div class="volume">    <!-- Volume -->
+                <div class="posicaoVolume"> 
+                    <i class="fas fa-volume-up fa-lg" id="btnVolume"></i> <!-- Botão que ativa/desativa barra de volume -->
+                    <div class="barraVol">
+                        <input type="range" min="0" max="100" value="100" id="sliderVolume">    <!-- Slider de volume -->
+                        <div id="volBar"></div> <!-- Preenchimento da barra de volume -->
+                    </div>
+                </div>
+            </div>
+            <h2 class="titulo">Lista de reprodução</h2>
             <div class="container2">
                 <div class="lista" id="repList"></div>
                 <label class="lista"><a class="btn-addmsc" onclick="openSlideMenuL()">+ Adicionar músicas à lista de reprodução</a></label>

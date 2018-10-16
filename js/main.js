@@ -124,7 +124,6 @@ function removeMusic(x) {   // Remove uma música da lista de reprodução
         document.getElementById("timerA").innerHTML = "00:00";
         document.getElementById("timerF").innerHTML = "00:00";
         document.getElementById("sliderMusica").value = 0;
-        document.getElementById("progBar").style.width = "0%";
     }
     attList();
 }
@@ -148,7 +147,7 @@ function colorRep() {   // Destaca a música atual na lista de reprodução
     for(let i = 0; i<repList.length; i++){
         document.getElementById(("list"+i)).style.color = "#E0E0E0";
     }
-    document.getElementById(("list"+music_index)).style.color = "#00B0FF";
+    document.getElementById(("list"+music_index)).style.color = "#00E676";
 }
 // Player
 function setMusic() {   // Define a música que irá tocar
@@ -261,7 +260,7 @@ function prevMusic() {  // Volta para a música anterior
 function loopMusic() {  // Ativa ou desativa a função repeat
     if (loop == false) {
         loop = true;
-        document.getElementById("repeatBtn").style.color = "#00B0FF";
+        document.getElementById("repeatBtn").style.color = "#00E676";
     }
     else {
         loop = false;
@@ -273,7 +272,7 @@ function loopMusic() {  // Ativa ou desativa a função repeat
 function shuffleMusic() {   // Ativa ou desativa a função aleatório(shuffle)
     if (shuffle == false) {
         shuffle = true;
-        document.getElementById("shuffleBtn").style.color = "#00B0FF";
+        document.getElementById("shuffleBtn").style.color = "#00E676";
     }
     else {
         shuffle = false;
@@ -284,7 +283,6 @@ function shuffleMusic() {   // Ativa ou desativa a função aleatório(shuffle)
 }
 function volume() {     // Determina o volume da música
     valorVol = document.getElementById("sliderVolume").value;   // a função volume recebe valores entre 0 e 1, o input "sliderVolume" está setado com valores de 0 a 100
-    document.getElementById("volBar").style.width = valorVol + "px";
     if (audio != null){
         audio.volume = (valorVol / 100);
     }
@@ -297,15 +295,13 @@ function posMusic() {   // Determina a posição atual (minutos e segundos) da m
 function btnVol() {     // Mostra ou esconde a barra de volume
     if (showVol == false) {
         showVol = true;
-        document.querySelector('#sliderVolume').style.display = "block";
-        document.querySelector('#volBar').style.display = "block";
-        document.querySelector('.barraVol').style.display = "flex";
+        // document.querySelector('#sliderVolume').style.display = "block";
+        // document.querySelector('.barraVol').style.display = "flex";
     }
     else {
         showVol = false;
-        document.querySelector('#sliderVolume').style.display = "none";
-        document.querySelector('#volBar').style.display = "none";
-        document.querySelector('.barraVol').style.display = "none";
+        // document.querySelector('#sliderVolume').style.display = "none";
+        // document.querySelector('.barraVol').style.display = "none";
     }
     closeSlideMenuL();
     closeSlideMenuR();
@@ -334,7 +330,6 @@ function timer() {  // Barra de reprodução da música
             playMusic();
         }
     }
-    document.getElementById("progBar").style.width = (atual / final) * 100 + "%";
 }
 // Sidebar Musicas
 function playNow(x) {   // Adiciona música na lista de reprodução e começa a tocá-la
