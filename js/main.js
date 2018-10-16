@@ -53,6 +53,10 @@ window.onclick = function(event) {      // Funções para fechar modal e sidebar
         closeSlideMenuL();
         closeSlideMenuR();
     }
+    else if (event.target == document.querySelector(".menu-container")) {
+        closeSlideMenuL();
+        closeSlideMenuR();
+    }
 }
 window.onload = function () {       // Comandos que serão executados ao carregar a página
     document.getElementById("playBtn").addEventListener("click", playMusic);
@@ -105,8 +109,8 @@ function removeMusic(x) {   // Remove uma música da lista de reprodução
         repList.splice(x,1);
     }
     if(repList.length == 0){
+        clearInterval(timerIntervalo);
         audio = null;
-        clearInterval(timer);
         document.getElementById("info-musica").innerHTML = "Nenhuma faixa adicionada à lista de reprodução";
         document.getElementById("info-artista").innerHTML = "";
         document.getElementById("info-ano").innerHTML = "";
@@ -166,7 +170,7 @@ function playMusic() {  // Inicia a música
         document.getElementById("capa").innerHTML = `<img src="${local_C}${repList[music_index].capa}${ext_C}"/>`;
         colorRep();
         volume();
-        setInterval(timer, 1000);
+        timerIntervalo = setInterval(timer, 1000);
         closeSlideMenuL();
         closeSlideMenuR();
     }
@@ -345,10 +349,10 @@ function filtrar() {
     for(let i = 0; i<=5; i++){
         nomes.push(document.getElementById(`musica${i}`).innerText.toLowerCase());
         if (nomeMusica == null){
-            document.getElementById(`musica${i}`).style.display = 'initial';
+            document.getElementById(`musica${i}`).style.display = 'block';
         }
         else if (nomes[i].indexOf(nomeMusica) != -1){
-            document.getElementById(`musica${i}`).style.display = 'initial';
+            document.getElementById(`musica${i}`).style.display = 'block';
         }
         else{
             document.getElementById(`musica${i}`).style.display = 'none';
