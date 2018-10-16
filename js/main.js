@@ -455,19 +455,17 @@ function addPL(x){  // Adiciona a música à(s) playlist(s) selecionada(s)
 // Sidebars
 function openSlideMenuL() {     // Função para abrir a sidebar no lado esquerdo (left)
     document.getElementById("menu-musicas").style.width = '200px';
-    document.getElementById("content").style.marginLeft = '200px';
+    closeSlideMenuR();
 }
 function closeSlideMenuL() {    // Função para fechar a sidebar no lado esquerdo (left)
     document.getElementById("menu-musicas").style.width = '0';
-    document.getElementById("content").style.marginLeft = '0';
 }
 function openSlideMenuR() {     // Função para abrir a sidebar no lado direito (right)
     document.getElementById("menu-playlists").style.width = '200px';
-    document.getElementById("content").style.marginLeft = '-200px';
+    closeSlideMenuL();
 }
 function closeSlideMenuR() {    // Função para fechar a sidebar no lado direito (right)
     document.getElementById("menu-playlists").style.width = '0';
-    document.getElementById("content").style.marginLeft = '0';
 }
 // Diversos
 function converte(x) {      // Função que converte o tempo das músicas em segundos para minutos:segundos com duas casas cada (ex: 59:59)
