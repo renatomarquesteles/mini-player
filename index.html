@@ -30,7 +30,8 @@
                 <i class="fas fa-bars fa-lg"></i>
             </button>
         </div>
-
+        <div id="m99Modal" class="modalSidebar">
+        </div>
         <div id="menu-musicas" class="nav">     <!-- Sidebar da esquerda com as músicas -->
             <button class="btn close" style="right:0;" onclick="closeSlideMenuL()">     <!-- Botão que esconde a sidebar -->
                 <i class="fas fa-times"></i>
@@ -147,12 +148,19 @@
             </div>
         </div>
         <div id="m8Modal" class="modal">    <!-- Modal para adicionar música à uma playlist -->
-                <div class="modal-content centro">
-                    <span onclick="closeModal(8)" class="closeModal">&times;</span>
-                    <div class="subLista" id="PLlist"></div>
-                    <p id="botaoAddPL"></p>
-                </div>
+            <div class="modal-content centro">
+                <span onclick="closeModal(8)" class="closeModal">&times;</span>
+                <div class="lista subLista" id="PLlist"></div>
+                <p id="botaoAddPL"></p>
             </div>
+        </div>
+        <div id="m9Modal" class="modal">    <!-- Modal com informações e opções de cada playlist -->
+            <div class="modal-content centro peq">
+                <span onclick="closeModal(9)" class="closeModal">&times;</span>
+                <p style="text-align: center" id="aviso"></p>
+                <a><button class="btn-Centro" onclick="closeModal(9)">OK</button></a>
+            </div>
+        </div>
         <div class="container">
             <div>
                 <p id="capa"><img src="img/capa.jpg" /></p> <!-- Imagem de capa do álbum -->

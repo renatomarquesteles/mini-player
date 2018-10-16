@@ -49,11 +49,11 @@ window.onclick = function(event) {      // Funções para fechar modal e sidebar
     else if (event.target == document.querySelector("#m7Modal")) {
         document.querySelector("#m7Modal").style.display = "none";
     }
-    else if (event.target == document.querySelector(".container")) {
-        closeSlideMenuL();
-        closeSlideMenuR();
+    else if (event.target == document.querySelector("#m8Modal")) {
+        document.querySelector("#m8Modal").style.display = "none";
     }
-    else if (event.target == document.querySelector(".menu-container")) {
+    else if (event.target == document.querySelector("#m99Modal")) {
+        document.querySelector("#m99Modal").style.display = "none";
         closeSlideMenuL();
         closeSlideMenuR();
     }
@@ -82,6 +82,11 @@ function closeModal(x) {    // Fecha o modal
 }
 // Lista de Reprodução
 function addRep(index) {    // Adiciona uma música à lista de reprodução
+    if(repList.indexOf(musicList[index]) != -1){
+        showModal(9);
+        document.getElementById("aviso").innerHTML = "Aviso: Foi adicionada uma música repetida na lista de reprodução.";
+        // alert("Adicionou uma música repetida na lista de reprodução!");
+    }
     repList.push(musicList[index]);
     attList();
     closeModal(index);
@@ -343,6 +348,7 @@ function playNow(x) {   // Adiciona música na lista de reprodução e começa a
     setMusic();
     playMusic();
     closeModal(x);
+    closeModal(99);
 }
 function filtrar() {
     var nomeMusica = document.getElementById("filtro").value.toLowerCase();
@@ -438,7 +444,7 @@ function PLlist(z) {    // Mostra a lista de Playlists quando se quer adicionar 
     for(let i = 0; i<playlist.length; i++){
         aux += `<p><label><input type="checkbox" name="playlist" value="${i}">${playlist[i].nome}</label></p>`;
     }
-    document.getElementById("PLlist").innerHTML = aux;
+    document.getElementById("PLlist").innerHTML = aux + '<label onclick="showModal(6), closeModal(8)"><i class="fas fa-plus-circle"></i> Criar Playlist</label>';
     document.getElementById("botaoAddPL").innerHTML = `<button class="btn-Embaixo" onclick="addPL(${z})">OK</button>`;
 }
 function addPL(x){  // Adiciona a música à(s) playlist(s) selecionada(s)
@@ -454,12 +460,14 @@ function addPL(x){  // Adiciona a música à(s) playlist(s) selecionada(s)
     }
     closeModal(8);
     closeModal(x);
+    closeModal(99);
     closeSlideMenuL();
 }
 // Sidebars
 function openSlideMenuL() {     // Função para abrir a sidebar no lado esquerdo (left)
     document.getElementById("menu-musicas").style.width = '200px';
     closeSlideMenuR();
+    showModal(99);
 }
 function closeSlideMenuL() {    // Função para fechar a sidebar no lado esquerdo (left)
     document.getElementById("menu-musicas").style.width = '0';
@@ -467,6 +475,7 @@ function closeSlideMenuL() {    // Função para fechar a sidebar no lado esquer
 function openSlideMenuR() {     // Função para abrir a sidebar no lado direito (right)
     document.getElementById("menu-playlists").style.width = '200px';
     closeSlideMenuL();
+    showModal(99);
 }
 function closeSlideMenuR() {    // Função para fechar a sidebar no lado direito (right)
     document.getElementById("menu-playlists").style.width = '0';
