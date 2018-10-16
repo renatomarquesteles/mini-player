@@ -41,7 +41,7 @@
                 <i class="fas fa-search fa-lg"></i>
             </div>
             <div class="lista" id="listaMusicas">
-                <p onclick="showModal(0)" id="musica0">Arctic Monkeys - Do I Wanna Know</p> 
+                <p class="item-list" onclick="showModal(0)" id="musica0">Arctic Monkeys - Do I Wanna Know</p> 
                 <div id="m0Modal" class="modal">    <!-- Modal com informações da música -->
                     <div class="modal-content">
                         <h1>Arctic Monkeys - Do I Wanna Know</h1>
@@ -53,7 +53,7 @@
                         <button class="btn-Embaixo" onclick="playNow(0)">PLAY</button>
                     </div>
                 </div>
-                <p onclick="showModal(1)" id="musica1">Drake - Nice For What</p>
+                <p class="item-list" onclick="showModal(1)" id="musica1">Drake - Nice For What</p>
                 <div id="m1Modal" class="modal">    <!-- Modal com informações da música -->
                     <div class="modal-content">
                         <h1>Drake - Nice For What</h1>
@@ -65,7 +65,7 @@
                         <button class="btn-Embaixo" onclick="playNow(1)">PLAY</button>
                     </div>
                 </div>
-                <p onclick="showModal(2)" id="musica2">Drake - Legend</p>
+                <p class="item-list" onclick="showModal(2)" id="musica2">Drake - Legend</p>
                 <div id="m2Modal" class="modal">    <!-- Modal com informações da música -->
                     <div class="modal-content">
                         <h1>Drake - Legend</h1>
@@ -77,7 +77,7 @@
                         <button class="btn-Embaixo" onclick="playNow(2)">PLAY</button>
                     </div>
                 </div>
-                <p onclick="showModal(3)" id="musica3">Migos - Walk It Talk It ft. Drake</p>
+                <p class="item-list" onclick="showModal(3)" id="musica3">Migos - Walk It Talk It ft. Drake</p>
                 <div id="m3Modal" class="modal">    <!-- Modal com informações da música -->
                     <div class="modal-content">
                         <h1>Migos - Walk It Talk It ft. Drake</h1>
@@ -89,7 +89,7 @@
                         <button class="btn-Embaixo" onclick="playNow(3)">PLAY</button>
                     </div>
                 </div>
-                <p onclick="showModal(4)" id="musica4">Kendrick Lamar - HUMBLE</p>
+                <p class="item-list" onclick="showModal(4)" id="musica4">Kendrick Lamar - HUMBLE</p>
                 <div id="m4Modal" class="modal">    <!-- Modal com informações da música -->
                     <div class="modal-content">
                         <h1>Kendrick Lamar - HUMBLE</h1>
@@ -101,7 +101,7 @@
                         <button class="btn-Embaixo" onclick="playNow(4)">PLAY</button>
                     </div>
                 </div>
-                <p onclick="showModal(5)" id="musica5">Drake - God's Plan</p>
+                <p class="item-list" onclick="showModal(5)" id="musica5">Drake - God's Plan</p>
                 <div id="m5Modal" class="modal">    <!-- Modal com informações da música -->
                     <div class="modal-content modal-direita">
                         <h1>Drake - God's Plan</h1>
@@ -121,9 +121,9 @@
             </button>
             <p>Playlists</p>
             <div class="lista">
-                <p id="playlists"></p>  <!-- Lista de playlists -->
-                <button onclick="showModal(6)"><i class="fas fa-plus-circle"></i> Criar Playlist</button>   <!-- Botão que abre modal de criar uma nova playlist -->
+                <p class="item-list" id="playlists"></p>  <!-- Lista de playlists -->
             </div>
+            <button class="lista " onclick="showModal(6)"><i class="fas fa-plus-circle"></i> Criar Playlist</button>   <!-- Botão que abre modal de criar uma nova playlist -->
         </div>
         <div id="m7Modal" class="modal">    <!-- Modal com informações e opções de cada playlist -->
             <div class="modal-content centro">
@@ -170,9 +170,9 @@
             <div class="info">      <!-- Informações sobre a música atual -->
                 <p id="info-musica">Nenhuma faixa adicionada à lista de reprodução</p>
                 <div id="info-album">
-                    <p id="info-artista">Artista: </p>
-                    <p id="info-ano">Ano: </p>
-                    <p id="info-genero">Gênero: </p>
+                    <p id="info-artista"></p>
+                    <p id="info-ano"></p>
+                    <p id="info-genero"></p>
                 </div>
             </div>
             <div class="sliderContainer">   <!-- Barra de reprodução -->
@@ -194,10 +194,8 @@
             </div>
             <p>Lista de reprodução</p>
             <div class="container2">
-                <div class="lista">
-                    <p id="repList"></p>
-                    <label><a class="btn-addmsc" onclick="openSlideMenuL()">+ Adicionar músicas à lista de reprodução</a></label>
-                </div>
+                <div class="lista" id="repList"></div>
+                <label class="lista"><a class="btn-addmsc" onclick="openSlideMenuL()">+ Adicionar músicas à lista de reprodução</a></label>
             </div>
         </div>
     </div>

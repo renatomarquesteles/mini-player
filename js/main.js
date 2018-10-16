@@ -83,36 +83,51 @@ function addRep(index) {    // Adiciona uma música à lista de reprodução
     closeModal(index);
 }
 function removeMusic(x) {   // Remove uma música da lista de reprodução
-    repList.splice(x,1);
-    if(music_index == x){
-        if(music_index > 0){
-            music_index--;
+    if (x == music_index){
+        stopMusic();
+        if(repList.length > 1){
             nextMusic();
+            repList.splice(x,1);
+            if(music_index > 0){
+                music_index--;
+            }
         }
-        if(audio != null){
-            stopMusic();
+        else{
+            repList = [];
+            music_index = 0;
         }
-        if(repList.length == 0){
-            audio = null;
-            clearInterval(timerIntervalo);
-            document.getElementById("info-musica").innerHTML = "Nenhuma faixa adicionada à lista de reprodução";
-            document.getElementById("info-artista").innerHTML = "Artista: ";
-            document.getElementById("info-ano").innerHTML = "Ano: ";
-            document.getElementById("info-genero").innerHTML = "Gênero: ";
-            document.getElementById("capa").innerHTML = "<img src='img/capa.jpg' />";
-            document.getElementById("timerA").innerHTML = "00:00";
-            document.getElementById("timerF").innerHTML = "00:00";
-        }
+    }
+    else if (x < music_index){
+        music_index--;
+        repList.splice(x,1);
+    }
+    else if (x > music_index){
+        repList.splice(x,1);
+    }
+    if(repList.length == 0){
+        audio = null;
+        clearInterval(timer);
+        document.getElementById("info-musica").innerHTML = "Nenhuma faixa adicionada à lista de reprodução";
+        document.getElementById("info-artista").innerHTML = "";
+        document.getElementById("info-ano").innerHTML = "";
+        document.getElementById("info-genero").innerHTML = "";
+        document.getElementById("capa").innerHTML = "<img src='img/capa.jpg' />";
+        document.getElementById("timerA").innerHTML = "00:00";
+        document.getElementById("timerF").innerHTML = "00:00";
+        document.getElementById("sliderMusica").value = 0;
+        document.getElementById("progBar").style.width = "0%";
     }
     attList();
 }
 function attList() {    // Atualiza a lista de reprodução
     let aux = "";
     for (let i = 0; i < repList.length; i++) {
-        aux += `<div class='repLista'><p id='list${i}' onclick='selectMusic(${i})'>${repList[i].nome}</p><i class='fas fa-times' onclick='removeMusic(${i})'></i></div>`;
+        aux += `<div class="repLista"><p id='list${i}' onclick='selectMusic(${i})'>${repList[i].nome}</p><i class='fas fa-times' onclick='removeMusic(${i})'></i></div>`;
     }
     document.getElementById("repList").innerHTML = aux;
-    colorRep();
+    if(repList.length > 0){
+        colorRep();
+    }
 }
 function selectMusic(x) {   // Seleciona uma música da lista de reprodução para tocar
     music_index = x;
@@ -134,24 +149,27 @@ function playMusic() {  // Inicia a música
     if(audio == null){
         if(repList.length > 0){
             setMusic();
+            playMusic();
         }
         else{
             openSlideMenuL();
         }
     }
-    audio.play();
-    document.getElementById("playBtn").style.display = "none";
-    document.getElementById("pauseBtn").style.display = "initial";
-    document.getElementById("info-musica").innerHTML = repList[music_index].nome;
-    document.getElementById("info-artista").innerHTML = repList[music_index].artista;
-    document.getElementById("info-ano").innerHTML = repList[music_index].ano;
-    document.getElementById("info-genero").innerHTML = repList[music_index].genero;
-    document.getElementById("capa").innerHTML = `<img src="${local_C}${repList[music_index].capa}${ext_C}"/>`;
-    colorRep();
-    volume();
-    timerIntervalo = setInterval(timer, 1000);
-    closeSlideMenuL();
-    closeSlideMenuR();
+    else {
+        audio.play();
+        document.getElementById("playBtn").style.display = "none";
+        document.getElementById("pauseBtn").style.display = "initial";
+        document.getElementById("info-musica").innerHTML = repList[music_index].nome;
+        document.getElementById("info-artista").innerHTML = repList[music_index].artista;
+        document.getElementById("info-ano").innerHTML = repList[music_index].ano;
+        document.getElementById("info-genero").innerHTML = repList[music_index].genero;
+        document.getElementById("capa").innerHTML = `<img src="${local_C}${repList[music_index].capa}${ext_C}"/>`;
+        colorRep();
+        volume();
+        setInterval(timer, 1000);
+        closeSlideMenuL();
+        closeSlideMenuR();
+    }
 }
 function pauseMusic() { // Pausa a música
     audio.pause();
@@ -161,56 +179,75 @@ function pauseMusic() { // Pausa a música
     closeSlideMenuR();
 }
 function stopMusic() {  // Para e reseta a música
-    audio.pause();
-    audio.currentTime = 0;
-    document.getElementById("playBtn").style.display = "initial";
-    document.getElementById("pauseBtn").style.display = "none";
-    document.getElementById("sliderMusica").value = 0;
-    closeSlideMenuL();
-    closeSlideMenuR();
+    if(audio == null){
+        openSlideMenuL();
+    }
+    else {
+        audio.pause();
+        audio.currentTime = 0;
+        document.getElementById("playBtn").style.display = "initial";
+        document.getElementById("pauseBtn").style.display = "none";
+        document.getElementById("sliderMusica").value = 0;
+    }
 }
 function nextMusic() {  // Passa para a música seguinte
-    if(loop == false){  // Verifica se o botão repeat está ativo
-        if(shuffle == false){   // Verifica se o botão aleatório(shuffle) está ativo
-            if (music_index >= repList.length - 1){
-                music_index = 0;
+    if(audio == null){
+        openSlideMenuL();
+    }
+    else{
+        if(loop == false){  // Verifica se o botão repeat está ativo
+            if(shuffle == false){   // Verifica se o botão aleatório(shuffle) está ativo
+                if (music_index >= repList.length - 1){
+                    stopMusic();
+                    music_index = 0;
+                    setMusic();
+                    playMusic();
+                }
+                else {
+                    music_index++;
+                    stopMusic();
+                    setMusic();
+                    playMusic();
+                }
             }
             else {
-                music_index++;
+                music_index = Math.floor(Math.random() * repList.length);
+                stopMusic();
+                setMusic();
+                playMusic();
             }
         }
         else {
-            music_index = Math.floor(Math.random() * repList.length);
+            stopMusic();
+            playMusic();
         }
     }
-    stopMusic();
-    setMusic();
-    playMusic();
-    closeSlideMenuL();
-    closeSlideMenuR();
 }
 function prevMusic() {  // Volta para a música anterior
-    if(loop == false){  // Verifica se o botão repeat está ativo
-        if(shuffle == false){   // Verifica se o botão aleatório(shuffle) está ativo
-            if (music_index == 0){
-                music_index = repList.length - 1;
-            }
-            else if (music_index < repList.length){
-                music_index--;
+    if(audio == null){
+        openSlideMenuL();
+    }
+    else{
+        if(loop == false){  // Verifica se o botão repeat está ativo
+            if(shuffle == false){   // Verifica se o botão aleatório(shuffle) está ativo
+                if (music_index == 0){
+                    music_index = repList.length - 1;
+                }
+                else if (music_index < repList.length){
+                    music_index--;
+                }
+                else {
+                    music_index = repList.length - 1;
+                }
             }
             else {
-                music_index = repList.length - 1;
+                music_index = Math.floor(Math.random() * repList.length);
             }
         }
-        else {
-            music_index = Math.floor(Math.random() * repList.length);
-        }
+        stopMusic();
+        setMusic();
+        playMusic();
     }
-    stopMusic();
-    setMusic();
-    playMusic();
-    closeSlideMenuL();
-    closeSlideMenuR();
 }
 function loopMusic() {  // Ativa ou desativa a função repeat
     if (loop == false) {
@@ -295,13 +332,9 @@ function playNow(x) {   // Adiciona música na lista de reprodução e começa a
     if(audio != null){  // Se já tiver alguma música tocando, pará-la
         stopMusic();
     }
-    if(repList.length > 0){ // Verifica se a lista de reprodução está vazia ou não
-        repList.splice(music_index+1, 0, musicList[x]);     // Adiciona música na próxima posição sem apagar nada da lista de reprodução
-        music_index++;
-    }
-    else {
-        repList.push(musicList[x]);
-    }
+    repList = [];
+    music_index = 0;
+    repList.push(musicList[x]);
     attList();
     setMusic();
     playMusic();
@@ -444,8 +477,8 @@ function converte(x) {      // Função que converte o tempo das músicas em seg
         }
         return num;
     }
-    minuto = duasCasas(Math.floor((x % 3600) / 60));
-    segundo = duasCasas((x % 3600) % 60);
+    minuto = duasCasas(Math.floor(x / 60));
+    segundo = duasCasas(x % 60);
     result = minuto + ":" + segundo;
     return result;
 }
