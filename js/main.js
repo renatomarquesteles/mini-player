@@ -160,7 +160,7 @@ function playMusic() {  // Inicia a música
             playMusic();
         }
         else{
-            openSlideMenuL();
+            // openSlideMenuL();
         }
     }
     else {
@@ -175,20 +175,20 @@ function playMusic() {  // Inicia a música
         colorRep();
         volume();
         timerIntervalo = setInterval(timer, 1000);
-        closeSlideMenuL();
-        closeSlideMenuR();
+        // closeSlideMenuL();
+        // closeSlideMenuR();
     }
 }
 function pauseMusic() { // Pausa a música
     audio.pause();
     document.getElementById("playBtn").style.display = "initial";
     document.getElementById("pauseBtn").style.display = "none";
-    closeSlideMenuL();
-    closeSlideMenuR();
+    // closeSlideMenuL();
+    // closeSlideMenuR();
 }
 function stopMusic() {  // Para e reseta a música
     if(audio == null){
-        openSlideMenuL();
+        // openSlideMenuL();
     }
     else {
         audio.pause();
@@ -200,7 +200,7 @@ function stopMusic() {  // Para e reseta a música
 }
 function nextMusic() {  // Passa para a música seguinte
     if(audio == null){
-        openSlideMenuL();
+        // openSlideMenuL();
     }
     else{
         if(loop == false){  // Verifica se o botão repeat está ativo
@@ -233,7 +233,7 @@ function nextMusic() {  // Passa para a música seguinte
 }
 function prevMusic() {  // Volta para a música anterior
     if(audio == null){
-        openSlideMenuL();
+        // openSlideMenuL();
     }
     else{
         if(loop == false){  // Verifica se o botão repeat está ativo
@@ -266,8 +266,8 @@ function loopMusic() {  // Ativa ou desativa a função repeat
         loop = false;
         document.getElementById("repeatBtn").style.color = "#E0E0E0";
     }
-    closeSlideMenuL();
-    closeSlideMenuR();
+    // closeSlideMenuL();
+    // closeSlideMenuR();
 }
 function shuffleMusic() {   // Ativa ou desativa a função aleatório(shuffle)
     if (shuffle == false) {
@@ -278,16 +278,16 @@ function shuffleMusic() {   // Ativa ou desativa a função aleatório(shuffle)
         shuffle = false;
         document.getElementById("shuffleBtn").style.color = "#E0E0E0";
     }
-    closeSlideMenuL();
-    closeSlideMenuR();
+    // closeSlideMenuL();
+    // closeSlideMenuR();
 }
 function volume() {     // Determina o volume da música
     valorVol = document.getElementById("sliderVolume").value;   // a função volume recebe valores entre 0 e 1, o input "sliderVolume" está setado com valores de 0 a 100
     if (audio != null){
         audio.volume = (valorVol / 100);
     }
-    closeSlideMenuL();
-    closeSlideMenuR();
+    // closeSlideMenuL();
+    // closeSlideMenuR();
 }
 function posMusic() {   // Determina a posição atual (minutos e segundos) da música
     audio.currentTime = ((document.getElementById("sliderMusica").value / 100) * audio.duration);
@@ -303,8 +303,8 @@ function btnVol() {     // Mostra ou esconde a barra de volume
         // document.querySelector('#sliderVolume').style.display = "none";
         // document.querySelector('.barraVol').style.display = "none";
     }
-    closeSlideMenuL();
-    closeSlideMenuR();
+    // closeSlideMenuL();
+    // closeSlideMenuR();
 }
 function timer() {  // Barra de reprodução da música
     atual = (audio.currentTime).toFixed(0);
@@ -457,7 +457,7 @@ function addPL(x){  // Adiciona a música à(s) playlist(s) selecionada(s)
     closeModal(8);
     closeModal(x);
     closeModal(99);
-    closeSlideMenuL();
+    // closeSlideMenuL();
 }
 // Sidebars
 function openSlideMenuL() {     // Função para abrir a sidebar no lado esquerdo (left)
