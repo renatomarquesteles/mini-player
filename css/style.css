@@ -35,7 +35,7 @@ img {
     display: flex;
     align-items: center;
     background-color: #3B3B3B;
-    position: relative;
+    position: fixed;
     z-index: 7;
 }
 .cabecalho img {
@@ -60,12 +60,13 @@ img {
 /* Menu */
 .menu-bar {
     width: 100%;
-    height: 48px;
     float: left;
     background-color: #424242;
-    display: none;
+    display: flex;
     justify-content: space-between;
     z-index: 7;
+    position: fixed;
+    margin-top: 55px;
 }
 .btn {
     width: 56px;
@@ -78,6 +79,9 @@ img {
 }
 #menu-musicas {
     left: 0;
+}
+.closeMobile {
+    display: none;
 }
 #menu-playlists {
     right: 0;
@@ -92,7 +96,7 @@ img {
     top: 0;
     background-color: #424242;
     /* opacity: .9; */
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     transition: 0.4s;
 }
 .nav a:hover {
@@ -132,7 +136,6 @@ img {
 }
 /* PLAYER */
 #content {
-    transition: margin-left 0.7s;
     width: 60%;
     height: 100%;
     margin: 0 20%;
@@ -143,6 +146,7 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 55px 0 30px 0;
 }
 .capa {
     margin-top: 18px;
@@ -184,6 +188,8 @@ img {
     justify-content: center;
     border-radius: 5px;
     background: #E5E5E5;
+    transition: width 0.2s linear;
+    
 }
 /* #sliderVolume::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -280,6 +286,11 @@ input[type="range"] {
 .item-list {
     padding: 7px;
 }
+.lista p {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 .lista p:hover {
     color: #fff;
     cursor: pointer;
@@ -334,7 +345,7 @@ input[type="range"] {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+    /* overflow: auto; */
     background-color: rgba(0,0,0,0.4);
 }
 .modalSidebar {
@@ -381,7 +392,7 @@ input[type="range"] {
     position: absolute;
 }
 .btn-Centro {
-    margin: 20px auto 0 auto;
+    margin-left: 60px;
 }
 .modal-content button:hover {
     background-color: #00B0FF;
@@ -389,7 +400,7 @@ input[type="range"] {
 }
 .modal-content a {
     background: transparent;
-    margin: 5px auto;
+    margin: 5px 11px 0 15px;
     font-size: 14px;
     cursor: pointer;
 }
@@ -399,6 +410,9 @@ input[type="range"] {
 .modal-content h1 {
     font-size: 20px;
     padding: 0 0 10px 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .modal-content img {
     margin: 0 10px;
@@ -410,11 +424,29 @@ input[type="range"] {
 .modal-content h2 {
     padding: 10px;
     cursor: default;
+    font-size: 14px;
 }
 #opcoesPL {
     display: flex;
     flex-direction: column;
 }
+.botoesPL {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    padding: 12px;
+}
+.botoesPL label {
+    margin-top: 5px; 
+}
+.botoesPL label:hover {
+    color:#0091EA;
+    cursor: pointer;
+}
+.botoesPL i {
+    margin-right: 15px;
+}
+
 #NomePL {
     width: 80%;
     background-color: #424242;
@@ -435,11 +467,57 @@ input[type="range"] {
 }
 .closeModal:hover,
 .closeModal:focus {
-    color: #000;
+    color: #fff;
     text-decoration: none;
     cursor: pointer;
 }
 .titulo {
     width: 80%;
     font-size: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+/* MEDIA QUERIES */
+@media only screen and (max-width: 600px) {
+    #menu-musicas {
+        transform: translateX(-100%);
+        width: 200px;
+        box-shadow: 5px 0 20px rgba(0, 0, 0, 0.4);
+    }
+    #menu-playlists {
+        transform: translateX(100%);
+        width: 200px;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.4);
+    }
+    .sombra {
+        background-color: transparent;
+        width: 0;
+        transition: width 0.5s;
+    }
+    #menu-playlists h1 {
+        margin-left: 45px;
+    }
+    #content {
+        margin: 0;
+        width: 100%;
+    }
+    .closeMobile {
+        display: inline-block;
+    }
+    .container {
+        margin: 100px 0 30px 0;
+    }
+}
+@media only screen and (min-width: 600px) {
+    .sombra {
+        width: 20%;
+        transition: width 0.6s;
+    }
+    #menu-musicas {
+        transform: translateX(0);
+    }
+    .menu-bar {
+        display: none;
+    }
 }
