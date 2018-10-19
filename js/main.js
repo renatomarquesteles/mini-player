@@ -275,9 +275,6 @@ function prevMusic() {  // Volta para a música anterior
             }
             else {
                 shufflePL();
-                stopMusic();
-                setMusic();
-                playMusic();
             }
         }
         else if(loop == 2){
@@ -291,16 +288,11 @@ function prevMusic() {  // Volta para a música anterior
             }
             else {
                 shufflePL();
-                stopMusic();
-                setMusic();
-                playMusic();
             }
         }
-        else{
-            stopMusic();
-            setMusic();
-            playMusic();
-        }
+        stopMusic();
+        setMusic();
+        playMusic();
     }
 }
 function loopMusic() {  // Ativa ou desativa a função repeat
@@ -417,10 +409,11 @@ function createPL() {   // Cria e armazena uma playlist
                 objeto.musica.push(musicList[5]);
             }
         }
+        musicas[i].checked = false;
     }
     playlist.push(objeto);
     document.getElementById("NomePL").value = "";
-    document.getElementsByName("musica").checked = false;
+    // document.getElementsByName("musica").checked = false;
     closeModal(6);
     attPlaylist();
     // listagem = "Playlist "+p;
@@ -498,19 +491,20 @@ function PLlist(z) {    // Mostra a lista de Playlists quando se quer adicionar 
     document.getElementById("PLlist").innerHTML = aux + '<label onclick="showModal(6), closeModal(8)"><i class="fas fa-plus-circle"></i> Criar Playlist</label>';
     document.getElementById("botaoAddPL").innerHTML = `<button class="btn-Embaixo" onclick="addPL(${z})">OK</button>`;
 }
-function addPL(n_modal){  // Adiciona a música à(s) playlist(s) selecionada(s)
+function addPL(n_musica_modal){  // Adiciona a música à(s) playlist(s) selecionada(s)
     var lista = document.getElementsByName("playlist");
     for (let i = 0; i < lista.length; i++){
         if (lista[i].checked) {
             for (let j = 0; j<playlist.length; j++){
                 if(lista[i].value == j){
-                    playlist[j].musica.push(musicList[x]);
+                    playlist[j].musica.push(musicList[n_musica_modal]);
                 }
             }
         }
+        lista[i].checked = false;
     }
     closeModal(8);
-    closeModal(n_modal);
+    closeModal(n_musica_modal);
     closeModal(99);
     closeSlideMenuL();
 }
