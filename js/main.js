@@ -81,11 +81,11 @@ window.onload = function () {       // Comandos que serão executados ao carrega
     // }
 }
 // Modal
-function showModal(x) {   // Mostra o modal
-    document.querySelector(("#m"+x+"Modal")).style.display = "block";
+function showModal(n_modal) {   // Mostra o modal
+    document.querySelector(("#m"+n_modal+"Modal")).style.display = "block";
 }
-function closeModal(x) {    // Fecha o modal
-    document.querySelector(("#m"+x+"Modal")).style.display = "none";
+function closeModal(n_modal) {    // Fecha o modal
+    document.querySelector(("#m"+n_modal+"Modal")).style.display = "none";
 }
 // Lista de Reprodução
 function addRep(index) {    // Adiciona uma música à lista de reprodução
@@ -97,12 +97,12 @@ function addRep(index) {    // Adiciona uma música à lista de reprodução
     attList();
     closeModal(index);
 }
-function removeMusic(x) {   // Remove uma música da lista de reprodução
-    if (x == music_index){
+function removeMusic(n_musica) {   // Remove uma música da lista de reprodução
+    if (n_musica == music_index){
         stopMusic();
         if(repList.length > 1){
             nextMusic();
-            repList.splice(x,1);
+            repList.splice(n_musica,1);
             if(music_index > 0){
                 music_index--;
             }
@@ -112,12 +112,12 @@ function removeMusic(x) {   // Remove uma música da lista de reprodução
             music_index = 0;
         }
     }
-    else if (x < music_index){
+    else if (n_musica < music_index){
         music_index--;
-        repList.splice(x,1);
+        repList.splice(n_musica,1);
     }
-    else if (x > music_index){
-        repList.splice(x,1);
+    else if (n_musica > music_index){
+        repList.splice(n_musica,1);
     }
     attList();
     setTimeout(() => {
@@ -146,8 +146,8 @@ function attList() {    // Atualiza a lista de reprodução
         colorRep();
     }
 }
-function selectMusic(x) {   // Seleciona uma música da lista de reprodução para tocar
-    music_index = x;
+function selectMusic(n_musica) {   // Seleciona uma música da lista de reprodução para tocar
+    music_index = n_musica;
     stopMusic();
     setMusic();
     playMusic();
@@ -183,6 +183,7 @@ function playMusic() {  // Inicia a música
         document.getElementById("capa").innerHTML = `<img src="${local_C}${repList[music_index].capa}${ext_C}"/>`;
         colorRep();
         volume();
+        clearInterval(timerIntervalo);
         timerIntervalo = setInterval(timer, 1000);
         closeSlideMenuL();
         closeSlideMenuR();
@@ -210,6 +211,14 @@ function nextMusic() {  // Passa para a música seguinte
                     stopMusic();
                     music_index = 0;
                     setMusic();
+                    document.getElementById("playBtn").style.display = "initial";
+                    document.getElementById("pauseBtn").style.display = "none";
+                    document.getElementById("info-musica").innerHTML = repList[music_index].nome;
+                    document.getElementById("info-artista").innerHTML = repList[music_index].artista;
+                    document.getElementById("info-ano").innerHTML = repList[music_index].ano;
+                    document.getElementById("info-genero").innerHTML = repList[music_index].genero;
+                    document.getElementById("capa").innerHTML = `<img src="${local_C}${repList[music_index].capa}${ext_C}"/>`;
+                    colorRep();
                 }
                 else {
                     music_index++;
@@ -226,15 +235,23 @@ function nextMusic() {  // Passa para a música seguinte
             }
         }
         else if(loop == 2){
-            if(music_index >= replist.length - 1){
-                stopMusic();
-                music_index = 0;
-                setMusic();
-                playMusic();
+            if(shuffle == false){
+                if(music_index >= repList.length - 1){
+                    stopMusic();
+                    music_index = 0;
+                    setMusic();
+                    playMusic();
+                }
+                else {
+                    stopMusic();
+                    music_index++;
+                    setMusic();
+                    playMusic();
+                }
             }
             else {
+                shufflePL();
                 stopMusic();
-                music_index++;
                 setMusic();
                 playMusic();
             }
@@ -252,20 +269,38 @@ function prevMusic() {  // Volta para a música anterior
                 if (music_index == 0){
                     music_index = repList.length - 1;
                 }
-                else if (music_index < repList.length){
+                else if (music_index <= repList.length){
                     music_index--;
-                }
-                else {
-                    music_index = repList.length - 1;
                 }
             }
             else {
                 shufflePL();
+                stopMusic();
+                setMusic();
+                playMusic();
             }
         }
-        stopMusic();
-        setMusic();
-        playMusic();
+        else if(loop == 2){
+            if(shuffle == false){
+                if (music_index == 0){
+                    music_index = repList.length - 1;
+                }
+                else{
+                    music_index--;
+                }
+            }
+            else {
+                shufflePL();
+                stopMusic();
+                setMusic();
+                playMusic();
+            }
+        }
+        else{
+            stopMusic();
+            setMusic();
+            playMusic();
+        }
     }
 }
 function loopMusic() {  // Ativa ou desativa a função repeat
@@ -328,49 +363,21 @@ function timer() {  // Barra de reprodução da música
     document.getElementById("timerF").innerHTML = converte(final);
     document.getElementById("sliderMusica").value = (atual / final) * 100;
     if (atual == final) {   // Quando a música termina
-        if(loop == 0){  // Verifica se o botão repeat está ativo
-            if (shuffle == false) { // Verifica se o botão aleatório(shuffle) está ativo
-                nextMusic();
-            }
-            else {
-                shufflePL();
-                stopMusic();
-                setMusic();
-                playMusic();
-            }
-        }
-        else if (loop == 2){
-            if(music_index >= repList.length - 1){
-                music_index = 0;
-                stopMusic();
-                setMusic();
-                playMusic();
-            }
-            else {
-                stopMusic();
-                setMusic();
-                playMusic();    
-            }
-        }
-        else {
-            stopMusic();
-            setMusic();
-            playMusic();
-        }
+        nextMusic();
     }
 }
 // Sidebar Musicas
-function playNow(x) {   // Adiciona música na lista de reprodução e começa a tocá-la
+function playNow(n_musica_modal) {   // Adiciona música na lista de reprodução e começa a tocá-la
     if(audio != null){  // Se já tiver alguma música tocando, pará-la
         stopMusic();
     }
     repList = [];
     music_index = 0;
-    repList.push(musicList[x]);
+    repList.push(musicList[n_musica_modal]);
     attList();
     setMusic();
     playMusic();
-    closeModal(x);
+    closeModal(n_musica_modal);
     closeModal(99);
 }
 function filtrar() {
@@ -491,7 +498,7 @@ function PLlist(z) {    // Mostra a lista de Playlists quando se quer adicionar 
     document.getElementById("PLlist").innerHTML = aux + '<label onclick="showModal(6), closeModal(8)"><i class="fas fa-plus-circle"></i> Criar Playlist</label>';
     document.getElementById("botaoAddPL").innerHTML = `<button class="btn-Embaixo" onclick="addPL(${z})">OK</button>`;
 }
-function addPL(x){  // Adiciona a música à(s) playlist(s) selecionada(s)
+function addPL(n_modal){  // Adiciona a música à(s) playlist(s) selecionada(s)
     var lista = document.getElementsByName("playlist");
     for (let i = 0; i < lista.length; i++){
         if (lista[i].checked) {
@@ -503,7 +510,7 @@ function addPL(x){  // Adiciona a música à(s) playlist(s) selecionada(s)
         }
     }
     closeModal(8);
-    closeModal(x);
+    closeModal(n_modal);
     closeModal(99);
     closeSlideMenuL();
 }
@@ -551,15 +558,15 @@ function closeSlideMenuR() {    // Função para fechar a sidebar no lado direit
     document.querySelector("#m99Modal").style.display = "none";
 }
 // Diversos
-function converte(x) {      // Função que converte o tempo das músicas em segundos para minutos:segundos com duas casas cada (ex: 59:59)
+function converte(tempo) {      // Função que converte o tempo das músicas em segundos para minutos:segundos com duas casas cada (ex: 59:59)
     function duasCasas(num) {
         if (num <= 9) {
             num = "0" + num;
         }
         return num;
     }
-    minuto = duasCasas(Math.floor(x / 60));
-    segundo = duasCasas(x % 60);
+    minuto = duasCasas(Math.floor(tempo / 60));
+    segundo = duasCasas(tempo % 60);
     result = minuto + ":" + segundo;
     return result;
 }
