@@ -119,19 +119,22 @@ function removeMusic(x) {   // Remove uma música da lista de reprodução
     else if (x > music_index){
         repList.splice(x,1);
     }
-    if(repList.length == 0){
-        clearInterval(timerIntervalo);
-        audio = null;
-        document.getElementById("info-musica").innerHTML = "Nenhuma faixa adicionada à lista de reprodução";
-        document.getElementById("info-artista").innerHTML = "";
-        document.getElementById("info-ano").innerHTML = "";
-        document.getElementById("info-genero").innerHTML = "";
-        document.getElementById("capa").innerHTML = "<img src='img/capa.jpg' />";
-        document.getElementById("timerA").innerHTML = "00:00";
-        document.getElementById("timerF").innerHTML = "00:00";
-        document.getElementById("sliderMusica").value = 0;
-    }
     attList();
+    setTimeout(() => {
+        if(repList.length == 0){
+            clearInterval(timerIntervalo);
+            audio = null;
+            document.getElementById("info-musica").innerHTML = "Nenhuma faixa adicionada à lista de reprodução";
+            document.getElementById("info-artista").innerHTML = "";
+            document.getElementById("info-ano").innerHTML = "";
+            document.getElementById("info-genero").innerHTML = "";
+            document.getElementById("capa").innerHTML = "<img src='img/capa.jpg' />";
+            document.getElementById("timerA").innerHTML = "00:00";
+            document.getElementById("timerF").innerHTML = "00:00";
+            document.getElementById("sliderMusica").value = 0;
+        }
+    }, 100)
+    
 }
 function attList() {    // Atualiza a lista de reprodução
     let aux = "";
@@ -207,7 +210,6 @@ function nextMusic() {  // Passa para a música seguinte
                     stopMusic();
                     music_index = 0;
                     setMusic();
-                    playMusic();
                 }
                 else {
                     music_index++;
@@ -219,6 +221,20 @@ function nextMusic() {  // Passa para a música seguinte
             else {
                 shufflePL();
                 stopMusic();
+                setMusic();
+                playMusic();
+            }
+        }
+        else if(loop == 2){
+            if(music_index >= replist.length - 1){
+                stopMusic();
+                music_index = 0;
+                setMusic();
+                playMusic();
+            }
+            else {
+                stopMusic();
+                music_index++;
                 setMusic();
                 playMusic();
             }
@@ -329,6 +345,11 @@ function timer() {  // Barra de reprodução da música
                 stopMusic();
                 setMusic();
                 playMusic();
+            }
+            else {
+                stopMusic();
+                setMusic();
+                playMusic();    
             }
         }
         else {
